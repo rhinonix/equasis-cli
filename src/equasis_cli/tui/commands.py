@@ -172,7 +172,11 @@ def parse_command(line: str) -> ParsedCommand | None:
     if not text:
         return None
     try:
-        tokens = shlex.split(text, posix=True)
+        lexer = shlex.shlex(text, posix=True)
+        lexer.whitespace_split = True
+        lexer.escape = ""  # keep backslashes literal, as in Windows paths
+        lexer.commenters = ""
+        tokens = list(lexer)
     except ValueError as exc:
         raise CommandError(f"could not read the command: {exc}") from None
 

@@ -42,6 +42,13 @@ def test_parameter_values_may_start_with_a_slash() -> None:
     assert command.text("output") == "/data/vessel.json"
 
 
+def test_backslashes_in_windows_paths_are_kept() -> None:
+    command = parse_command(r'batch /file C:\Users\me\imos.txt /output "C:\My Data\out #1.csv"')
+    assert command is not None
+    assert command.text("file") == r"C:\Users\me\imos.txt"
+    assert command.text("output") == r"C:\My Data\out #1.csv"
+
+
 @pytest.mark.parametrize(
     ("line", "message"),
     [
