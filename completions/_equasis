@@ -1,0 +1,98 @@
+#compdef equasis
+# zsh completion for equasis-cli. Copy this file to a directory on $fpath.
+
+_equasis_formats() {
+    local -a formats=(
+        'table:readable table (default)'
+        'json:JSON document'
+        'jsonl:JSON Lines, one record per line'
+        'csv:comma-separated values'
+    )
+    _describe 'output format' formats
+}
+
+_equasis_common=(
+    '(-f --format --output)'{-f,--format}'[output format]:format:_equasis_formats'
+    '(-o --output-file)'{-o,--output-file}'[write results to a file]:file:_files'
+    '(-q --quiet)'{-q,--quiet}'[only print results and errors]'
+    '--no-color[disable colored messages]'
+    '--username[Equasis username (e-mail address)]:username:'
+    '--password[Equasis password]:password:'
+    '--delay[minimum pause between requests]:seconds:'
+    '--debug[log HTTP activity to stderr]'
+    '--save-html[save Equasis pages for troubleshooting]:directory:_files -/'
+    '--no-cache[do not read or write the page cache]'
+    '--refresh[fetch fresh pages even if cached]'
+)
+
+_equasis() {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '(- *)'{-h,--help}'[show help]' \
+        '(- *)--version[show version]' \
+        '--interactive[start the interactive shell]' \
+        $_equasis_common \
+        '1: :->command' \
+        '*:: :->arguments' && return
+
+    case $state in
+        command)
+            local -a commands=(
+                'vessel:full vessel profile by IMO number'
+                'search:search ships and companies'
+                'fleet:vessels associated with a company'
+                'configure:manage stored credentials'
+                'cache:show or clear cached Equasis pages'
+                'interactive:start the interactive shell'
+            )
+            _describe 'command' commands
+            ;;
+        arguments)
+            case $line[1] in
+                vessel)
+                    _arguments \
+                        '--imo-file[read IMO numbers from a file]:file:_files' \
+                        '--fail-fast[stop at the first failed lookup]' \
+                        $_equasis_common \
+                        '*:IMO number:'
+                    ;;
+                search)
+                    _arguments \
+                        '--imo[find a ship by IMO number]:IMO number:' \
+                        '--mmsi[find a ship by MMSI]:MMSI:' \
+                        '--call-sign[find a ship by call sign]:call sign:' \
+                        '--type[result types]:type:(all ships companies)' \
+                        '(--all-pages)--max-pages[result pages to fetch]:pages:' \
+                        '(--max-pages)--all-pages[fetch every page]' \
+                        $_equasis_common \
+                        '1:name:'
+                    ;;
+                fleet)
+                    _arguments \
+                        '*--company-id[Equasis company number]:company number:' \
+                        '--company-file[read companies from a file]:file:_files' \
+                        '--first-match[use the best match for ambiguous names]' \
+                        '--max-pages[limit fleet pages]:pages:' \
+                        '--fail-fast[stop at the first failed lookup]' \
+                        $_equasis_common \
+                        '*:company name or number:'
+                    ;;
+                configure)
+                    _arguments \
+                        '(--show --test --clear)--setup[store credentials interactively]' \
+                        '(--setup --test --clear)--show[show where credentials come from]' \
+                        '(--setup --show --clear)--test[check that the credentials work]' \
+                        '(--setup --show --test)--clear[delete stored credentials]' \
+                        $_equasis_common
+                    ;;
+                cache)
+                    _arguments $_equasis_common '1:action:(info clear)'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_equasis "$@"
