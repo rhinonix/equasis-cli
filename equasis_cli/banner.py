@@ -17,7 +17,7 @@ class Colors:
     CYAN = '\033[96m'
     WHITE = '\033[97m'
 
-    # Dim/subdued colors for banner text (Claude Code style)
+    # Dim/subdued colors for banner text
     DIM_RED = '\033[31m'        # Darker red
     DIM_GREEN = '\033[32m'      # Darker green
     DIM_YELLOW = '\033[33m'     # Darker yellow
@@ -71,11 +71,11 @@ def check_credentials() -> bool:
         return bool(username and password)
 
 def display_credentials_note() -> None:
-    """Display a Claude Code-style colorized credentials setup note"""
+    """Display a colorized credentials setup note"""
     color_support = Colors.supports_color()
 
     if color_support:
-        # Claude Code style - fully colorized background note
+        # Fully colorized note
         print(f"{Colors.YELLOW}{Colors.BOLD}┌{'─' * 76}┐{Colors.RESET}")
         print(f"{Colors.YELLOW}│{Colors.RESET}{Colors.YELLOW} CREDENTIALS REQUIRED                                                      │{Colors.RESET}")
         print(f"{Colors.YELLOW}│{Colors.RESET}{Colors.YELLOW}                                                                          │{Colors.RESET}")
@@ -365,7 +365,7 @@ def display_success_summary(operation: str, details: Optional[str] = None) -> No
         print()
 
 class StatusBar:
-    """Persistent status bar for interactive mode (Claude Code style)"""
+    """Persistent status bar for interactive mode"""
 
     def __init__(self):
         self.connected = False

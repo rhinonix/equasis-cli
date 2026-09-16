@@ -1,27 +1,47 @@
-venv/
-.env
+# Byte-compiled / cache files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-.pytest_cache/
-
-# Local development files
-local/
-*.egg-info/
-.DS_Store
-debug_vessel_*.html
-CLAUDE.md
-.claude/
-docs/
-
-# Python cache and temporary files
 *.py[cod]
 *$py.class
-dist/
-build/
+*.so
 
-# Development documentation moved to docs/
-# site/ moved to local/debug/
+# Packaging and build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test, coverage, and tool caches
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Credentials and local configuration (never commit)
+.env
+.env.*
+credentials.json
+
+# Raw HTML captured with --save-html (may contain account details)
+equasis-html/
+debug_vessel_*.html
+
+# Local-only working material (notes, scratch data, archived code)
+local/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
