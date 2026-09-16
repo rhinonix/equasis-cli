@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
+from datetime import datetime, timezone
 from types import TracebackType
 
+from .cache import PageCache
 from .exceptions import (
     AuthenticationError,
     EquasisError,
     LayoutChangedError,
+    NetworkError,
     NotFoundError,
     SessionExpiredError,
 )
@@ -51,13 +54,30 @@ class EquasisClient:
             vessel = client.get_vessel("9811000")
     """
 
-    def __init__(self, username: str, password: str, *, transport: Transport | None = None):
+    def __init__(
+        self,
+        username: str,
+        password: str,
+        *,
+        transport: Transport | None = None,
+        cache: PageCache | None = None,
+        refresh: bool = False,
+    ):
+        """
+        Args:
+            transport: HTTP transport (pacing, retries, response capture).
+            cache: Optional page cache. Cached pages are used until they expire.
+            refresh: Ignore cached pages but still store fresh ones.
+        """
         if not username or not password:
             raise AuthenticationError("an Equasis username and password are required")
         self._username = username
         self._password = password
         self.transport = transport or Transport()
+        self.cache = cache
+        self.refresh = refresh
         self._logged_in = False
+        self._fetch_times: list[datetime] = []
 
     # ------------------------------------------------------------------ lifecycle
 
@@ -106,8 +126,21 @@ class EquasisClient:
         *,
         params: Mapping[str, str] | None = None,
         data: Mapping[str, str] | None = None,
+        use_cache: bool = True,
     ) -> str:
-        """Fetch an authenticated page, logging in again once if the session expired."""
+        """Fetch an authenticated page, logging in again once if the session expired.
+
+        Regular content pages are served from and stored in the cache when one is
+        configured.
+        """
+        key = PageCache.key(method, path, params, data) if self.cache else None
+        if self.cache and key and use_cache and not self.refresh:
+            cached = self.cache.get(key)
+            if cached is not None:
+                logger.debug("%s %s served from cache", method, path)
+                self._fetch_times.append(cached.fetched_at)
+                return cached.html
+
         if not self._logged_in:
             self.login()
         html = self.transport.request(method, path, params=params, data=data)
@@ -118,7 +151,21 @@ class EquasisClient:
             if classify(html) is PageKind.LOGIN:
                 self._logged_in = False
                 raise SessionExpiredError("Equasis ended the session and it could not be renewed")
+        if self.cache and key and classify(html) is PageKind.CONTENT:
+            self.cache.put(key, html)
+        self._fetch_times.append(datetime.now(timezone.utc))
         return html
+
+    def _is_cached(self, method: str, path: str, data: Mapping[str, str]) -> bool:
+        if not self.cache or self.refresh:
+            return False
+        return self.cache.get(PageCache.key(method, path, None, data)) is not None
+
+    def _start(self) -> None:
+        self._fetch_times = []
+
+    def _retrieved_at(self) -> datetime:
+        return min(self._fetch_times) if self._fetch_times else datetime.now(timezone.utc)
 
     # -------------------------------------------------------------------- vessels
 
@@ -134,6 +181,7 @@ class EquasisClient:
             LayoutChangedError: if the Ship Info page cannot be parsed.
         """
         imo = normalize_imo(imo)
+        self._start()
         params = {"fs": "ShipInfo", "P_IMO": imo}
         try:
             vessel = parse_ship_info(self._page("GET", "restricted/ShipInfo", params=params))
@@ -156,7 +204,9 @@ class EquasisClient:
             vessel.warnings.append(f"ship history unavailable: {exc}")
             logger.warning("could not parse ship history for IMO %s: %s", imo, exc)
 
-        return merge_vessel(vessel, inspections, history)
+        vessel = merge_vessel(vessel, inspections, history)
+        vessel.retrieved_at = self._retrieved_at()
+        return vessel
 
     # --------------------------------------------------------------------- search
 
@@ -180,6 +230,7 @@ class EquasisClient:
         query = query.strip()
         if not query:
             raise EquasisError("search text must not be empty")
+        self._start()
         first = parse_search(
             self._page(
                 "POST",
@@ -229,6 +280,7 @@ class EquasisClient:
                 break
             results.companies.extend(new_companies)
 
+        results.retrieved_at = self._retrieved_at()
         return results
 
     def search_ships(
@@ -241,6 +293,7 @@ class EquasisClient:
         """Look up ships by exact identifier using Equasis advanced search."""
         if not any((imo, mmsi, call_sign)):
             raise EquasisError("provide an IMO number, MMSI, or call sign")
+        self._start()
         data = {
             "P_PAGE": "1",
             "P_PAGE_COMP": "1",
@@ -259,7 +312,12 @@ class EquasisClient:
             for label, value in (("imo", imo), ("mmsi", mmsi), ("call_sign", call_sign))
             if value
         )
-        return SearchResults(query=query, ships=page.ships, total_ships=len(page.ships))
+        return SearchResults(
+            query=query,
+            ships=page.ships,
+            total_ships=len(page.ships),
+            retrieved_at=self._retrieved_at(),
+        )
 
     # ---------------------------------------------------------------------- fleet
 
@@ -271,13 +329,13 @@ class EquasisClient:
             NotFoundError: if Equasis has no company with this number.
         """
         company_id = normalize_company_id(company_id)
+        self._start()
 
-        def fetch(page_number: int) -> str:
-            return self._page(
-                "POST",
-                _FLEET_PATH,
-                data={"P_PAGE": str(page_number), "P_COMP": company_id, "ongletActifSC": "comp"},
-            )
+        def form(page_number: int) -> dict[str, str]:
+            return {"P_PAGE": str(page_number), "P_COMP": company_id, "ongletActifSC": "comp"}
+
+        def fetch(page_number: int, *, use_cache: bool = True) -> str:
+            return self._page("POST", _FLEET_PATH, data=form(page_number), use_cache=use_cache)
 
         html = fetch(1)
         if classify(html) in (PageKind.NOT_FOUND, PageKind.ERROR):
@@ -288,13 +346,29 @@ class EquasisClient:
         )
 
         last = min(_page_limit(first.last_page, max_pages), MAX_FLEET_PAGES)
+        # Equasis only serves later fleet pages after page 1 in the same session.
+        session_ready = not self._is_cached("POST", _FLEET_PATH, form(1)) or all(
+            self._is_cached("POST", _FLEET_PATH, form(n)) for n in range(2, last + 1)
+        )
         for number in range(2, last + 1):
-            page = parse_fleet(fetch(number))
+            if not session_ready and not self._is_cached("POST", _FLEET_PATH, form(number)):
+                fetch(1, use_cache=False)
+                session_ready = True
+            try:
+                page_html = fetch(number)
+            except NetworkError as exc:
+                if exc.status_code != 500:
+                    raise
+                logger.info("fleet page %s refused; reloading page 1 and retrying", number)
+                fetch(1, use_cache=False)
+                page_html = fetch(number, use_cache=False)
+            page = parse_fleet(page_html)
             known = {v.imo for v in fleet.vessels}
             new = [v for v in page.vessels if v.imo not in known]
             if not new:
                 break
             fleet.vessels.extend(new)
+        fleet.retrieved_at = self._retrieved_at()
         return fleet
 
 

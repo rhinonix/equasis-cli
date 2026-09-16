@@ -84,6 +84,8 @@ def render(result: Renderable, fmt: str, *, retrieved_at: datetime | None = None
     """Render ``result`` in format ``fmt`` (one of :data:`FORMATS`)."""
     if fmt not in FORMATS:
         raise ValueError(f"unknown output format {fmt!r}; choose from {', '.join(FORMATS)}")
+    if retrieved_at is None and not isinstance(result, BatchReport):
+        retrieved_at = result.retrieved_at
     retrieved_at = retrieved_at or datetime.now(timezone.utc)
     if isinstance(result, Vessel):
         return _render_vessel(result, fmt, retrieved_at)
@@ -137,6 +139,10 @@ def _envelope(kind: str, retrieved_at: datetime, **payload: Any) -> dict[str, An
 
 def _timestamp(moment: datetime) -> str:
     return moment.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def _display_time(moment: datetime) -> str:
+    return moment.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
 def _dumps(data: Any) -> str:
@@ -337,6 +343,7 @@ def _vessel_table(vessel: Vessel, indicators: VesselIndicators) -> list[str]:
             ("Call sign", vessel.call_sign),
             ("MMSI", vessel.mmsi),
             ("Particulars updated", vessel.particulars_updated),
+            ("Data retrieved", vessel.retrieved_at and _display_time(vessel.retrieved_at)),
         ]
     )
 
@@ -592,6 +599,7 @@ def _render_fleet(fleet: Fleet, fmt: str, retrieved_at: datetime) -> str:
             ("Status", company.status),
             ("Last update", company.last_update),
             ("Vessels", fleet.total_vessels or len(fleet.vessels)),
+            ("Data retrieved", fleet.retrieved_at and _display_time(fleet.retrieved_at)),
         ]
     )
     if fleet.total_vessels and fleet.total_vessels > len(fleet.vessels):

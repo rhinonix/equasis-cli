@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pytest
 
+from equasis_cli.cache import PageCache
 from equasis_cli.credentials import CredentialStore
 from equasis_cli.models import CompanySummary
 from equasis_cli.tui.commands import CommandError, CommandRunner, help_text, parse_command
@@ -115,6 +116,7 @@ def runner(store: CredentialStore, fake: FakeClient, recorder: Recorder) -> Comm
         recorder.statuses.append,
         store=store,
         client_factory=lambda username, password: fake,  # type: ignore[arg-type,return-value]
+        cache=PageCache(store.config_dir.parent / "cache"),
     )
 
 
@@ -249,3 +251,20 @@ def test_invalid_imo_and_status(runner: CommandRunner, recorder: Recorder) -> No
     assert "not a valid IMO number" in recorder.lines[-1]
     runner.run("status")
     assert "Account:        user@example.com" in recorder.lines[-1]
+
+
+def test_refresh_flag_and_cache_command(
+    runner: CommandRunner, recorder: Recorder, fake: FakeClient
+) -> None:
+    runner.run("vessel /imo 9074729 /refresh")
+    assert fake.refresh is True
+    runner.run("vessel /imo 9074729")
+    assert fake.refresh is False
+
+    runner.cache.put("x", "<html></html>")
+    runner.run("cache")
+    assert recorder.lines[-1].startswith("Cache: 1 pages")
+    runner.run("cache clear")
+    assert recorder.lines[-1] == "Removed 1 cached page."
+    runner.run("cache purge")
+    assert "use 'cache info' or 'cache clear'" in recorder.lines[-1]

@@ -18,6 +18,7 @@ from typing import IO, Any, NoReturn
 from . import output
 from ._version import __version__
 from .banner import DISCLAIMER
+from .cache import DEFAULT_TTL, PageCache, default_cache_dir
 from .client import DEFAULT_SEARCH_PAGES, EquasisClient
 from .console import Console
 from .credentials import CredentialStore
@@ -45,6 +46,9 @@ from .transport import Transport
 from .validation import normalize_company_id, normalize_imo, parse_list, split_values
 
 logger = logging.getLogger("equasis_cli")
+
+ClientFactory = Callable[..., EquasisClient]
+"""Called as ``factory(username, password, transport=..., cache=..., refresh=...)``."""
 
 
 class ExitCode(enum.IntEnum):
@@ -150,6 +154,18 @@ def _add_common_options(parser: argparse.ArgumentParser, *, subcommand: bool) ->
         type=Path,
         default=default(None),
         help="save every Equasis page to DIR for troubleshooting (pages include your account name)",
+    )
+    connection.add_argument(
+        "--no-cache",
+        action="store_true",
+        default=default(False),
+        help="do not read or write the page cache",
+    )
+    connection.add_argument(
+        "--refresh",
+        action="store_true",
+        default=default(False),
+        help="fetch fresh pages even if cached copies exist",
     )
     connection.add_argument(
         "--no-banner", action="store_true", default=default(False), help=argparse.SUPPRESS
@@ -281,6 +297,17 @@ def build_parser() -> argparse.ArgumentParser:
     action.add_argument("--clear", action="store_true", help="delete stored credentials")
     _add_common_options(configure, subcommand=True)
 
+    cache = commands.add_parser(
+        "cache",
+        help="show or clear cached Equasis pages",
+        description=(
+            f"Equasis pages are cached for {int(DEFAULT_TTL.total_seconds() // 3600)} hours in "
+            f"{default_cache_dir()} (set EQUASIS_CACHE_DIR to change it)."
+        ),
+    )
+    cache.add_argument("action", nargs="?", choices=("info", "clear"), default="info")
+    _add_common_options(cache, subcommand=True)
+
     commands.add_parser("interactive", help="start the interactive shell")
     return parser
 
@@ -299,7 +326,7 @@ class Runner:
         stdout: IO[str],
         stdin: IO[str],
         store: CredentialStore,
-        client_factory: Callable[[str, str, Transport], EquasisClient],
+        client_factory: ClientFactory,
     ) -> None:
         self.args = args
         self.console = console
@@ -321,7 +348,13 @@ class Runner:
         if credentials is None:
             raise ConfigurationError("no Equasis credentials found")
         transport = Transport(min_interval=max(0.0, args.delay), save_html_dir=args.save_html)
-        return self.client_factory(credentials.username, credentials.password, transport)
+        return self.client_factory(
+            credentials.username,
+            credentials.password,
+            transport=transport,
+            cache=None if args.no_cache else PageCache(),
+            refresh=args.refresh,
+        )
 
     @property
     def format(self) -> str:
@@ -356,6 +389,7 @@ class Runner:
             "search": self.search,
             "fleet": self.fleet,
             "configure": self.configure,
+            "cache": self.cache,
         }[command]
         return handler()
 
@@ -547,6 +581,26 @@ class Runner:
         if item.status is not ItemStatus.OK:
             self.console.warn(f"{item.query}: {item.error}")
 
+    def cache(self) -> int:
+        cache = PageCache()
+        if self.args.action == "clear":
+            removed = cache.clear()
+            self.console.success(f"Removed {removed} cached page{'s' if removed != 1 else ''}")
+            return ExitCode.OK
+        stats = cache.stats()
+        lines = [
+            f"Cache directory: {stats.directory}",
+            f"Cached pages:    {stats.entries} ({stats.size_bytes / 1_048_576:.1f} MB)",
+            f"Expiry:          {int(cache.ttl.total_seconds() // 3600)} hours after retrieval",
+        ]
+        if stats.oldest and stats.newest:
+            lines.append(
+                f"Stored between:  {stats.oldest:%Y-%m-%d %H:%M} and "
+                f"{stats.newest:%Y-%m-%d %H:%M} UTC"
+            )
+        self.stdout.write("\n".join(lines) + "\n")
+        return ExitCode.OK
+
     def configure(self) -> int:
         args = self.args
         store = self.store
@@ -602,7 +656,7 @@ class Runner:
         transport = Transport(min_interval=0)
         try:
             self.console.progress("Checking the credentials with Equasis...")
-            self.client_factory(username, password, transport).login()
+            self.client_factory(username, password, transport=transport).login()
             self.console.success("Login succeeded.")
         except AuthenticationError as exc:
             self.console.error(str(exc))
@@ -649,7 +703,7 @@ def main(
     stdin: IO[str] | None = None,
     stderr: IO[str] | None = None,
     store: CredentialStore | None = None,
-    client_factory: Callable[[str, str, Transport], EquasisClient] | None = None,
+    client_factory: ClientFactory | None = None,
 ) -> int:
     """Run the CLI and return the exit status."""
     stdout = stdout or sys.stdout
@@ -678,12 +732,7 @@ def main(
         stdout=stdout,
         stdin=stdin,
         store=store or CredentialStore(),
-        client_factory=client_factory
-        or (
-            lambda username, password, transport: EquasisClient(
-                username, password, transport=transport
-            )
-        ),
+        client_factory=client_factory or EquasisClient,
     )
     try:
         return runner.run()

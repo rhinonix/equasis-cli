@@ -63,6 +63,7 @@ class FakeClient:
         self.reject_login = reject_login
         self.calls: list[tuple[str, object]] = []
         self.logged_in = False
+        self.refresh = False
         self.closed = False
 
     def __enter__(self) -> FakeClient:
@@ -85,10 +86,13 @@ class FakeClient:
             raise AuthenticationError("Equasis rejected the login")
         self.logged_in = True
 
+    def _ensure_login(self) -> None:
+        if not self.logged_in:
+            self.login()
+
     def get_vessel(self, imo: str) -> Vessel:
         self.calls.append(("get_vessel", imo))
-        if self.reject_login:
-            raise AuthenticationError("Equasis rejected the login")
+        self._ensure_login()
         imo = normalize_imo(imo)
         if imo not in self.vessels:
             raise NotFoundError(f"no vessel with IMO {imo} in Equasis")
@@ -98,6 +102,7 @@ class FakeClient:
         self, query: str, *, max_pages: int | None = 3, ships: bool = True, companies: bool = True
     ) -> SearchResults:
         self.calls.append(("search", query))
+        self._ensure_login()
         matching_ships = [
             ShipSummary(imo=v.imo, name=v.name, flag=v.flag)
             for v in self.vessels.values()
@@ -115,6 +120,7 @@ class FakeClient:
         self, *, imo: str | None = None, mmsi: str | None = None, call_sign: str | None = None
     ) -> SearchResults:
         self.calls.append(("search_ships", imo or mmsi or call_sign))
+        self._ensure_login()
         ships = [
             ShipSummary(imo=v.imo, name=v.name)
             for v in self.vessels.values()
@@ -124,6 +130,7 @@ class FakeClient:
 
     def get_fleet(self, company_id: str, *, max_pages: int | None = None) -> Fleet:
         self.calls.append(("get_fleet", company_id))
+        self._ensure_login()
         if company_id not in self.fleets:
             raise NotFoundError(f"no company with number {company_id} in Equasis")
         return self.fleets[company_id]

@@ -217,6 +217,9 @@ class Vessel:
     """Problems that left parts of the profile incomplete (for example an
     Inspections page that could not be parsed)."""
 
+    retrieved_at: dt.datetime | None = None
+    """When the underlying Equasis pages were fetched (earlier if served from cache)."""
+
 
 # --------------------------------------------------------------------- search and fleet
 
@@ -251,6 +254,7 @@ class SearchResults:
     companies: list[CompanySummary] = field(default_factory=list)
     total_ships: int | None = None
     """Total ship matches reported by Equasis (may exceed ``len(ships)`` if truncated)."""
+    retrieved_at: dt.datetime | None = None
 
 
 @dataclass(kw_only=True)
@@ -296,6 +300,7 @@ class Fleet:
     vessels: list[FleetVessel] = field(default_factory=list)
     total_vessels: int | None = None
     """Total reported by Equasis (may exceed ``len(vessels)`` if truncated)."""
+    retrieved_at: dt.datetime | None = None
 
 
 # ------------------------------------------------------------------------------- batch
