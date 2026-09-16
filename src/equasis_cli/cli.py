@@ -636,9 +636,9 @@ def _configure_logging(debug: bool) -> None:
 
 
 def _start_interactive() -> int:
-    from .interactive import InteractiveShell
+    from .tui import InteractiveShell
 
-    InteractiveShell().start()  # type: ignore[no-untyped-call]
+    InteractiveShell().start()
     return ExitCode.OK
 
 

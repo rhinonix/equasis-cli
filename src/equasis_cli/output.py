@@ -10,7 +10,7 @@ import csv
 import io
 import json
 import os
-import tempfile
+import uuid
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
@@ -108,13 +108,15 @@ def write_output(text: str, path: str | os.PathLike[str]) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     if text and not text.endswith("\n"):
         text += "\n"
-    fd, temp_name = tempfile.mkstemp(prefix=f".{target.name}.", dir=target.parent)
+    # A uniquely named sibling opened with "x" honours the user's umask, unlike
+    # tempfile.mkstemp, which always creates owner-only files.
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
     try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="") as handle:
+        with open(temporary, "x", encoding="utf-8", newline="") as handle:
             handle.write(text)
-        os.replace(temp_name, target)
+        os.replace(temporary, target)
     except BaseException:
-        Path(temp_name).unlink(missing_ok=True)
+        temporary.unlink(missing_ok=True)
         raise
     return target
 
