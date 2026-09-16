@@ -80,7 +80,7 @@ COMMANDS: dict[str, CommandSpec] = {
         CommandSpec(
             "vessel",
             "Full vessel profile by IMO number",
-            "vessel /imo IMO [/format FORMAT] [/output FILE]",
+            "vessel /imo IMO [/refresh] [/format FORMAT] [/output FILE]",
             (Param("imo", "IMO number (required)"), REFRESH, FORMAT, OUTPUT),
             ("Includes management, classification, PSC inspections and history.",),
         ),
@@ -88,7 +88,7 @@ COMMANDS: dict[str, CommandSpec] = {
             "search",
             "Search ships and companies",
             "search /name NAME | /imo IMO | /mmsi MMSI | /callsign CALLSIGN "
-            "[/type all|ships|companies] [/pages N] [/format FORMAT] [/output FILE]",
+            "[/type all|ships|companies] [/pages N] [/refresh] [/format FORMAT] [/output FILE]",
             (
                 Param("name", "name to search for (partial matches)"),
                 Param("imo", "exact IMO number"),
@@ -104,7 +104,8 @@ COMMANDS: dict[str, CommandSpec] = {
         CommandSpec(
             "fleet",
             "Vessels associated with a company",
-            "fleet /company NAME | /id NUMBER [/first] [/pages N] [/format FORMAT] [/output FILE]",
+            "fleet /company NAME | /id NUMBER [/first] [/pages N] [/refresh] [/format FORMAT] "
+            "[/output FILE]",
             (
                 Param("company", "company name"),
                 Param("id", "7-digit Equasis company number"),
@@ -123,7 +124,7 @@ COMMANDS: dict[str, CommandSpec] = {
             "batch",
             "Look up many vessels or companies",
             'batch /imos "IMO,IMO" | /file FILE | /companies "NAME,NAME" | /company-file FILE '
-            "[/fail-fast] [/first] [/format FORMAT] [/output FILE]",
+            "[/fail-fast] [/first] [/refresh] [/format FORMAT] [/output FILE]",
             (
                 Param("imos", "comma-separated IMO numbers"),
                 Param("file", "file with one IMO number per line"),

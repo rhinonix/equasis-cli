@@ -42,12 +42,15 @@ def test_resolve_format_prefers_explicit_then_extension() -> None:
 
 
 def test_vessel_json_envelope_is_valid_and_complete() -> None:
-    document = json.loads(output.render(fixture_vessel(), "json", retrieved_at=MOMENT))
+    fixture = fixture_vessel()
+    fixture.retrieved_at = MOMENT
+    document = json.loads(output.render(fixture, "json"))
 
     assert document["schema_version"] == 1
     assert document["type"] == "vessel"
     assert document["retrieved_at"] == "2026-09-16T12:00:00Z"
     vessel = document["vessel"]
+    assert vessel["retrieved_at"] == "2026-09-16T12:00:00Z"
     assert vessel["imo"] == "9074729"
     assert vessel["gross_tonnage"] == 15899
     assert vessel["status_since"] == "2025-09-25"
