@@ -340,7 +340,10 @@ def to_jsonable(value: Any) -> Any:
     if isinstance(value, enum.Enum):
         return value.value
     if isinstance(value, dt.datetime):
-        return value.isoformat()
+        if value.tzinfo is None:
+            return value.isoformat(timespec="seconds")
+        utc = value.astimezone(dt.timezone.utc).isoformat(timespec="seconds")
+        return utc.replace("+00:00", "Z")
     if isinstance(value, dt.date):
         return value.isoformat()
     if isinstance(value, dict):

@@ -1,3 +1,5 @@
+# Recorded Equasis pages are test data and must stay byte-for-byte as generated.
+exclude: ^tests/fixtures/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
