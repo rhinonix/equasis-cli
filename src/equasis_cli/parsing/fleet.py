@@ -5,7 +5,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from bs4 import Comment, NavigableString, Tag
+from bs4 import Tag
+from bs4.element import Comment, NavigableString
 
 from ..exceptions import LayoutChangedError
 from ..models import Company, FleetVessel, RoleSince
