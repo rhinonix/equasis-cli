@@ -2,7 +2,7 @@
 
 ![Alt text](https://github.com/user-attachments/assets/d8efd954-438b-4e91-b000-8391b2f0321f "Screenshot of equasis-cli")
 
-[![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-lightgrey.svg)](LICENSING.md)
 [![GitHub Stars](https://img.shields.io/github/stars/rhinonix/equasis-cli?style=social)](https://github.com/rhinonix/equasis-cli/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/rhinonix/equasis-cli)](https://github.com/rhinonix/equasis-cli/issues)
@@ -99,7 +99,7 @@ Equasis CLI Tool is a Python-based command-line application that interfaces with
 
 ## Prerequisites
 
-- **Python 3.7+**: Required for modern features and type hints
+- **Python 3.10+**: Required for modern features and type hints
 - **Equasis Account**: Valid username and password from equasis.org
 - **Internet Connection**: Required for accessing Equasis servers
 
@@ -114,7 +114,7 @@ Equasis CLI Tool is a Python-based command-line application that interfaces with
 ### Prerequisites
 
 - **pipx**: Recommended for isolated installation of Python CLI tools
-- **Python 3.7+**: Required for the application
+- **Python 3.10+**: Required for the application
 - **Git** (optional): For cloning the repository
 
 ### Install pipx (if not already installed)
@@ -1094,17 +1094,18 @@ Since Equasis HTML structure may change, you can test parsing with saved HTML:
 
 ```python
 def test_parsing():
-    with open('sample_vessel_page.html', 'r') as f:
+    with open("sample_vessel_page.html", "r") as f:
         html = f.read()
 
     # Import the client class
     from equasis_cli import EquasisClient
 
-    client = EquasisClient('', '')
-    result = client._parse_vessel_info(html, '1234567')
+    client = EquasisClient("", "")
+    result = client._parse_vessel_info(html, "1234567")
     print(result)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     test_parsing()
 ```
 

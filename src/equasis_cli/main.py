@@ -12,6 +12,7 @@ from .client import EquasisClient
 from .formatter import OutputFormatter
 from .banner import display_banner, display_compact_info, display_error_banner, display_success_summary, check_credentials
 from .credentials import get_credential_manager
+from ._version import __version__
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -47,6 +48,7 @@ def main():
 def traditional_main():
     """Traditional CLI mode with argparse"""
     parser = argparse.ArgumentParser(description='Equasis CLI Tool for Maritime Data')
+    parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     parser.add_argument('--username', help='Equasis username (or set EQUASIS_USERNAME env var)')
     parser.add_argument('--password', help='Equasis password (or set EQUASIS_PASSWORD env var)')
     parser.add_argument('--output', choices=['table', 'json', 'csv'], default='table', help='Output format')

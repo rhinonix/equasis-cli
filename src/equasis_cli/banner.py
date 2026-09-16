@@ -39,8 +39,8 @@ class Colors:
         """Check if terminal supports color"""
         return hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
 
-# Version information - should match setup.py
-__version__ = "2.0.0"
+# Version information
+from ._version import __version__
 
 BANNER_ART = r"""
                                _                 ___
