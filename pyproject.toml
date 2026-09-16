@@ -77,11 +77,10 @@ equasis_cli = ["py.typed"]
 line-length = 100
 target-version = "py310"
 src = ["src", "tests"]
-# The interactive shell is excluded until it is rewritten; all other code must
-# pass the full rule set.
-extend-exclude = ["src/equasis_cli/interactive.py"]
 
 [tool.ruff.lint]
+# Typographic quotes are normalized in shell input; the prompt uses a chevron.
+allowed-confusables = ["❯", "‘", "’", "“", "”"]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -105,11 +104,6 @@ strict = true
 warn_unreachable = true
 mypy_path = "src"
 files = ["src/equasis_cli"]
-
-[[tool.mypy.overrides]]
-# Type checking of the interactive shell is enabled once it is rewritten.
-module = ["equasis_cli.interactive"]
-ignore_errors = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
