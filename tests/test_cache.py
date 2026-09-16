@@ -118,7 +118,10 @@ def test_cached_vessel_needs_no_requests(tmp_path: Path, fixture_html: Loader) -
     assert len(responses.calls) == requests_made
     assert not second_client.logged_in
     assert second.retrieved_at is not None
-    assert second.retrieved_at <= (first.retrieved_at or second.retrieved_at)
+    assert first.retrieved_at is not None
+    # The cached copy is dated by its file modification time, which some file systems
+    # record slightly after the in-memory timestamp.
+    assert abs((second.retrieved_at - first.retrieved_at).total_seconds()) < 2
 
 
 @responses.activate
