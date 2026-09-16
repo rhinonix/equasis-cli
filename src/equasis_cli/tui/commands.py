@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from .. import output
+from ..cache import PageCache
 from ..client import DEFAULT_SEARCH_PAGES, EquasisClient
 from ..credentials import CredentialStore
 from ..exceptions import (
@@ -71,6 +72,7 @@ FORMAT = Param("format", "output format: table, json, jsonl, csv")
 OUTPUT = Param("output", "save to a file (format from the extension)")
 FIRST = Param("first", "use the best match when a name matches several companies", False)
 PAGES = Param("pages", "result pages to fetch (100 results each)")
+REFRESH = Param("refresh", "ignore cached pages and fetch fresh data", False)
 
 COMMANDS: dict[str, CommandSpec] = {
     spec.name: spec
@@ -79,7 +81,7 @@ COMMANDS: dict[str, CommandSpec] = {
             "vessel",
             "Full vessel profile by IMO number",
             "vessel /imo IMO [/format FORMAT] [/output FILE]",
-            (Param("imo", "IMO number (required)"), FORMAT, OUTPUT),
+            (Param("imo", "IMO number (required)"), REFRESH, FORMAT, OUTPUT),
             ("Includes management, classification, PSC inspections and history.",),
         ),
         CommandSpec(
@@ -94,6 +96,7 @@ COMMANDS: dict[str, CommandSpec] = {
                 Param("callsign", "exact call sign"),
                 Param("type", "all, ships, or companies (name searches)"),
                 PAGES,
+                REFRESH,
                 FORMAT,
                 OUTPUT,
             ),
@@ -107,6 +110,7 @@ COMMANDS: dict[str, CommandSpec] = {
                 Param("id", "7-digit Equasis company number"),
                 FIRST,
                 PAGES,
+                REFRESH,
                 FORMAT,
                 OUTPUT,
             ),
@@ -127,12 +131,19 @@ COMMANDS: dict[str, CommandSpec] = {
                 Param("company-file", "file with one company per line"),
                 Param("fail-fast", "stop at the first failed lookup", False),
                 FIRST,
+                REFRESH,
                 FORMAT,
                 OUTPUT,
             ),
             ("Files may contain blank lines and # comments.",),
         ),
         CommandSpec("format", "Set the default output format", "format table|json|jsonl|csv"),
+        CommandSpec(
+            "cache",
+            "Show or clear cached Equasis pages",
+            "cache [info|clear]",
+            details=("Pages are reused for 24 hours; add /refresh to a command to bypass them.",),
+        ),
         CommandSpec("status", "Show session status", "status"),
         CommandSpec("clear", "Clear the output", "clear"),
         CommandSpec("help", "Show help for all or one command", "help [COMMAND]"),
@@ -230,13 +241,16 @@ class CommandRunner:
         state: ShellState | None = None,
         store: CredentialStore | None = None,
         client_factory: Callable[[str, str], EquasisClient] | None = None,
+        cache: PageCache | None = None,
     ) -> None:
         self.write = write
         self.status = status
+        self.refresh = False
         self.state = state or ShellState()
         self.store = store or CredentialStore()
+        self.cache = cache if cache is not None else PageCache()
         self.client_factory = client_factory or (
-            lambda username, password: EquasisClient(username, password)
+            lambda username, password: EquasisClient(username, password, cache=self.cache)
         )
 
     # ------------------------------------------------------------------- helpers
@@ -255,9 +269,7 @@ class CommandRunner:
                 )
             self.state.client = self.client_factory(credentials.username, credentials.password)
             self.state.username = credentials.username
-        if not self.state.client.logged_in:
-            self.status("Logging in to Equasis...")
-            self.state.client.login()
+        self.state.client.refresh = self.refresh
         return self.state.client
 
     def close(self) -> None:
@@ -315,7 +327,11 @@ class CommandRunner:
             if command.name == "exit":
                 return False
             handler: Callable[[ParsedCommand], None] = getattr(self, f"_cmd_{command.name}")
-            handler(command)
+            self.refresh = command.flag("refresh")
+            try:
+                handler(command)
+            finally:
+                self.refresh = False
         except CommandError as exc:
             self.write(f"Error: {exc}")
         except AuthenticationError as exc:
@@ -516,6 +532,20 @@ class CommandRunner:
             f"  Default format: {self.state.output_format}",
         ]
         self.write("\n".join(lines))
+
+    def _cmd_cache(self, command: ParsedCommand) -> None:
+        action = command.arguments[0].lower() if command.arguments else "info"
+        if action == "clear":
+            removed = self.cache.clear()
+            self.write(f"Removed {removed} cached page{'s' if removed != 1 else ''}.")
+            return
+        if action != "info":
+            raise CommandError("use 'cache info' or 'cache clear'")
+        stats = self.cache.stats()
+        self.write(
+            f"Cache: {stats.entries} pages ({stats.size_bytes / 1_048_576:.1f} MB) in "
+            f"{stats.directory}"
+        )
 
     def _cmd_clear(self, command: ParsedCommand) -> None:  # handled by the application
         pass

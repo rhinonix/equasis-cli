@@ -13,6 +13,7 @@ from prompt_toolkit.input import create_pipe_input
 from prompt_toolkit.input.base import PipeInput
 from prompt_toolkit.output import DummyOutput
 
+from equasis_cli.cache import PageCache
 from equasis_cli.credentials import CredentialStore
 from equasis_cli.tui.app import MAX_OUTPUT_LINES, PROMPT, InteractiveShell, OutputLexer
 from equasis_cli.tui.commands import CommandRunner
@@ -40,6 +41,7 @@ def shell(pipe: PipeInput, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> I
         print,
         store=store,
         client_factory=lambda u, p: fake,  # type: ignore[arg-type,return-value]
+        cache=PageCache(tmp_path / "cache"),
     )
     return InteractiveShell(runner=runner, input=pipe, output=DummyOutput())
 
@@ -55,10 +57,24 @@ def test_banner_is_shown(shell: InteractiveShell) -> None:
 @pytest.mark.parametrize(
     ("text", "expected"),
     [
-        ("/", ["vessel", "search", "fleet", "batch", "format", "status", "clear", "help", "exit"]),
+        (
+            "/",
+            [
+                "vessel",
+                "search",
+                "fleet",
+                "batch",
+                "format",
+                "cache",
+                "status",
+                "clear",
+                "help",
+                "exit",
+            ],
+        ),
         ("/ba", ["batch"]),
         ("batch /co", ["/companies", "/company-file"]),
-        ("vessel /imo 1 /", ["/format", "/output"]),
+        ("vessel /imo 1 /", ["/refresh", "/format", "/output"]),
         ("vessel ", []),
         ("ves", []),
     ],

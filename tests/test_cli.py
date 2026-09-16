@@ -55,9 +55,9 @@ def run(store: CredentialStore, fake: FakeClient):  # type: ignore[no-untyped-de
         stdin_stream = TTYStringIO(stdin) if tty else io.StringIO(stdin)
         seen: list[Transport] = []
 
-        def factory(username: str, password: str, transport: Transport) -> FakeClient:
+        def factory(username: str, password: str, **options: object) -> FakeClient:
             assert (username, password) == ("user@example.com", "secret")
-            seen.append(transport)
+            seen.append(options["transport"])  # type: ignore[arg-type]
             return fake
 
         code = main(
@@ -263,13 +263,15 @@ def test_delay_and_save_html_reach_the_transport(
     store: CredentialStore, fake: FakeClient, tmp_path: Path
 ) -> None:
     seen: list[Transport] = []
+    cache_options: list[tuple[object, object]] = []
 
-    def factory(username: str, password: str, transport: Transport) -> FakeClient:
-        seen.append(transport)
+    def factory(username: str, password: str, **options: object) -> FakeClient:
+        seen.append(options["transport"])  # type: ignore[arg-type]
+        cache_options.append((options["cache"], options["refresh"]))
         return fake
 
     main(
-        ["vessel", "9074729", "--delay", "2.5", "--save-html", str(tmp_path)],
+        ["vessel", "9074729", "--delay", "2.5", "--save-html", str(tmp_path), "--no-cache"],
         stdout=io.StringIO(),
         stderr=io.StringIO(),
         stdin=io.StringIO(),
@@ -278,3 +280,16 @@ def test_delay_and_save_html_reach_the_transport(
     )
     assert seen[0].min_interval == 2.5
     assert seen[0].save_html_dir == tmp_path
+    assert cache_options == [(None, False)]
+
+
+def test_cache_command(run, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.setenv("EQUASIS_CACHE_DIR", str(tmp_path / "cache"))
+    from equasis_cli.cache import PageCache
+
+    PageCache().put("abc", "<html></html>")
+    info = run("cache")
+    assert "Cached pages:    1" in info.stdout
+    cleared = run("cache", "clear")
+    assert "Removed 1 cached page" in cleared.stderr
+    assert PageCache().stats().entries == 0

@@ -147,7 +147,9 @@ def test_batch_formats() -> None:
         "warnings": [],
         "elapsed_seconds": 0.0,
         "vessel": None,
+        "indicators": None,
     }
+    assert document["results"][0]["indicators"]["age_years"] == 31
 
     rows = list(csv.DictReader(io.StringIO(output.render(report, "csv"))))
     assert [(r["query"], r["lookup_status"], r["name"]) for r in rows] == [
