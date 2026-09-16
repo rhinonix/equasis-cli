@@ -17,6 +17,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
 
+from .enrichment import VesselIndicators, compute_indicators
 from .models import (
     SCHEMA_VERSION,
     BatchItem,
@@ -93,9 +94,9 @@ def render(result: Renderable, fmt: str, *, retrieved_at: datetime | None = None
     return _render_batch(result, fmt, retrieved_at)
 
 
-def render_batch_item_jsonl(kind: str, item: BatchItem[Any]) -> str:
+def render_batch_item_jsonl(kind: str, item: BatchItem[Any], today: date | None = None) -> str:
     """Render one batch item as a JSON Lines record (for streaming output)."""
-    return _dumps_line(_batch_item_record(kind, item))
+    return _dumps_line(_batch_item_record(kind, item, today or date.today()))
 
 
 def write_output(text: str, path: str | os.PathLike[str]) -> Path:
@@ -241,6 +242,14 @@ _VESSEL_CSV_HEADERS = (
     "last_inspection",
     "name_changes",
     "flag_changes",
+    "age_years",
+    "name_changes_36_months",
+    "flag_changes_36_months",
+    "management_changes_36_months",
+    "inspections_36_months",
+    "detentions_36_months",
+    "mmsi_matches_flag",
+    "observations",
     "warnings",
 )
 
@@ -250,7 +259,8 @@ def _company_for_role(vessel: Vessel, role_prefix: str) -> str | None:
     return "; ".join(dict.fromkeys(names)) or None
 
 
-def _vessel_csv_row(vessel: Vessel) -> list[Any]:
+def _vessel_csv_row(vessel: Vessel, today: date) -> list[Any]:
+    indicators = compute_indicators(vessel, today)
     dated = [i.date for i in vessel.inspections if i.date]
     return [
         vessel.imo,
@@ -279,21 +289,34 @@ def _vessel_csv_row(vessel: Vessel) -> list[Any]:
         max(dated) if dated else None,
         max(0, len(vessel.name_history) - 1),
         max(0, len(vessel.flag_history) - 1),
+        indicators.age_years,
+        indicators.name_changes_36_months,
+        indicators.flag_changes_36_months,
+        indicators.management_changes_36_months,
+        indicators.inspections_36_months,
+        indicators.detentions_36_months,
+        indicators.mmsi_matches_flag,
+        "; ".join(indicators.observations) or None,
         "; ".join(vessel.warnings) or None,
     ]
 
 
 def _render_vessel(vessel: Vessel, fmt: str, retrieved_at: datetime) -> str:
-    if fmt == "json":
-        return _dumps(_envelope("vessel", retrieved_at, vessel=vessel))
-    if fmt == "jsonl":
-        return _dumps_line(_envelope("vessel", retrieved_at, vessel=vessel))
+    today = retrieved_at.date()
+    if fmt in ("json", "jsonl"):
+        document = _envelope(
+            "vessel",
+            retrieved_at,
+            vessel=vessel,
+            indicators=compute_indicators(vessel, today),
+        )
+        return _dumps(document) if fmt == "json" else _dumps_line(document)
     if fmt == "csv":
-        return _csv(_VESSEL_CSV_HEADERS, [_vessel_csv_row(vessel)])
-    return "\n".join(_vessel_table(vessel)) + "\n"
+        return _csv(_VESSEL_CSV_HEADERS, [_vessel_csv_row(vessel, today)])
+    return "\n".join(_vessel_table(vessel, compute_indicators(vessel, today))) + "\n"
 
 
-def _vessel_table(vessel: Vessel) -> list[str]:
+def _vessel_table(vessel: Vessel, indicators: VesselIndicators) -> list[str]:
     status = vessel.status
     if status and vessel.status_since:
         status = f"{status} (since {vessel.status_since.isoformat()})"
@@ -316,6 +339,12 @@ def _vessel_table(vessel: Vessel) -> list[str]:
             ("Particulars updated", vessel.particulars_updated),
         ]
     )
+
+    _section(lines, "Indicators")
+    if indicators.observations:
+        lines += [f"  * {note}" for note in indicators.observations]
+    else:
+        lines.append("  No notable indicators")
 
     performance = vessel.flag_performance
     _section(lines, "Flag performance")
@@ -592,7 +621,7 @@ def _render_fleet(fleet: Fleet, fmt: str, retrieved_at: datetime) -> str:
 # ---------------------------------------------------------------------------- batch
 
 
-def _batch_item_record(kind: str, item: BatchItem[Any]) -> dict[str, Any]:
+def _batch_item_record(kind: str, item: BatchItem[Any], today: date) -> dict[str, Any]:
     key = "vessel" if kind == "vessels" else "fleet"
     record: dict[str, Any] = {
         "query": item.query,
@@ -602,6 +631,12 @@ def _batch_item_record(kind: str, item: BatchItem[Any]) -> dict[str, Any]:
         "elapsed_seconds": round(item.elapsed_seconds, 2),
         key: to_jsonable(item.result),
     }
+    if kind == "vessels":
+        record["indicators"] = (
+            to_jsonable(compute_indicators(item.result, today))
+            if isinstance(item.result, Vessel)
+            else None
+        )
     return record
 
 
@@ -609,7 +644,9 @@ def _render_batch(report: BatchReport, fmt: str, retrieved_at: datetime) -> str:
     kind = report.kind
     if fmt in ("json", "jsonl"):
         if fmt == "jsonl":
-            return "".join(render_batch_item_jsonl(kind, item) for item in report.items)
+            return "".join(
+                render_batch_item_jsonl(kind, item, retrieved_at.date()) for item in report.items
+            )
         summary = {
             "total": len(report.items),
             "succeeded": report.succeeded,
@@ -620,7 +657,9 @@ def _render_batch(report: BatchReport, fmt: str, retrieved_at: datetime) -> str:
             {
                 **_envelope(f"batch_{kind}", retrieved_at),
                 "summary": summary,
-                "results": [_batch_item_record(kind, item) for item in report.items],
+                "results": [
+                    _batch_item_record(kind, item, retrieved_at.date()) for item in report.items
+                ],
             }
         )
 
@@ -629,7 +668,7 @@ def _render_batch(report: BatchReport, fmt: str, retrieved_at: datetime) -> str:
             rows = []
             for item in report.items:
                 vessel_row = (
-                    _vessel_csv_row(item.result)
+                    _vessel_csv_row(item.result, retrieved_at.date())
                     if isinstance(item.result, Vessel)
                     else [None] * len(_VESSEL_CSV_HEADERS)
                 )

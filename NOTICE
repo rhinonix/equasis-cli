@@ -1,0 +1,15 @@
+equasis-cli
+Copyright (c) 2025-2026 rhinonix
+
+This software includes third-party data:
+
+Maritime Identification Digits (src/equasis_cli/enrichment/data/mids.json)
+  Derived from the ITU Maritime Identification Digits table as compiled in
+  https://github.com/michaeljfazio/MIDs, licensed under the Apache License,
+  Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
+
+Country codes (src/equasis_cli/enrichment/data/countries.json)
+  ISO 3166-1 country names and codes.
+
+Equasis is a trademark of its respective owner. equasis-cli is not affiliated
+with or endorsed by Equasis.
