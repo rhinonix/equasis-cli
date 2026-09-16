@@ -1,0 +1,56 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Please never include your Equasis password, your
+        credentials file, or pages saved with `--save-html` that still contain your name.
+  - type: input
+    id: version
+    attributes:
+      label: equasis-cli version
+      description: Output of `equasis --version`
+      placeholder: equasis 3.0.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and Python version
+      placeholder: macOS 15, Python 3.13
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - Command line
+        - Interactive shell
+        - Python API
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: The exact command you ran
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Include the output and exit code. Re-running with `--debug` often helps.
+      render: text
+    validations:
+      required: true

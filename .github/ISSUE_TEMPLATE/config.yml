@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/rhinonix/equasis-cli/security/advisories/new
+    about: Report security issues privately.
+  - name: Commercial licensing
+    url: https://github.com/rhinonix/equasis-cli/blob/main/LICENSING.md
+    about: Using equasis-cli commercially.
