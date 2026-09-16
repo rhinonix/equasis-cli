@@ -1,0 +1,9495 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+
+
+
+<title>Equasis - ShipInspection
+</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body onload="initOnglet()">
+<a aria-expanded="false" href="#collapse1" id="boutonInitOnglet">
+</a>
+<div id="body">
+<header class="banner">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse white" role="navigation">
+<div class="separator bleu-equasis"></div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-2 no-padding">
+
+<div class="navbar-header full-width">
+<button class="navbar-toggle" data-target="#equasis-menu-collapse" id="menu" onclick="toggleMenu();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<button class="navbar-toggle user" data-target="#equasis-user-collapse" id="user" onclick="toggleUser();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-user"></span></button>
+<a class="navbar-brand" href="HomePage?fs=ShipInspection"></a>
+</div>
+
+
+<div class="navbar-header full-width hidden-lg hidden-md hidden-sm no-padding">
+<div class="bleu-equasis no-padding">
+<div>
+<form action="../restricted/Search?fs=ShipInspection" class="navbar-form navbar-input-group" id="RechercheEnteteS" method="post" name="formSearchEnteteS" onsubmit="document.formSearchEnteteS.P_ENTREE_ENTETE_HIDDEN.value=document.formSearchEnteteS.P_ENTREE_ENTETE_S.value;">
+<input id="P_ENTREE_ENTETE_HIDDEN" name="P_ENTREE_ENTETE_HIDDEN" type="hidden" value=""/> <input name="P_PAGE" type="hidden" value="1"/> <input name="P_PAGE_COMP" type="hidden" value="1"/> <input name="P_PAGE_SHIP" type="hidden" value="1"/>
+<div class="input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="P_ENTREE_ENTETE_S" name="P_ENTREE_ENTETE_S" placeholder="IMO, Name, Company" type="text"/> <span class="input-group-btn">
+<button class="btn btn-default" type="submit">
+<i class="icon-search icon-sm"></i>
+</button>
+</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+<div class="hidden-lg hidden-md hidden-sm">
+<div class="collapse navbar-collapse hidden-lg hidden-md hidden-sm" id="equasis-user-collapse">
+<div class="navbar-right hidden-lg hidden-md hidden-sm">
+
+<div class="access-body">
+<h3>
+Welcome
+</h3>
+<div class="clearfix"></div>
+<form action="HomePage?fs=ShipInspection" method="post" name="formInfoUser" onsubmit="window.location.reload()">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="clearfix h15"></div>
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul class="no-margin">
+<li><a href="../public/HomePage?fs=ShipInspection&amp;P_ACTION=NEW_CONNECTION">
+Logout <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<a href="Registration?fs=ShipInspection"> My profile <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue
+<i class="icon-arrow-right icon-sm"></i>
+</a></li>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=Feedback"> Give your opinion <i class="icon-arrow-right icon-sm"></i></a></li>
+</ul>
+</div>
+</div>
+</form>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="collapse navbar-collapse" id="equasis-menu-collapse">
+<div class="col-sm-4 col-lg-3 navbar-right hidden-xs">
+<div class="table-cell cell-full text-right">
+
+<form action="../restricted/Search?fs=ShipInspection" class="navbar-form navbar-input-group" id="RechercheEntete" method="post" name="formSearchEntete" onsubmit="document.formSearchEntete.P_ENTREE_ENTETE_HIDDEN.value=document.formSearchEntete.P_ENTREE_ENTETE.value;">
+<input name="P_PAGE" type="hidden" value="1"/> <input name="P_PAGE_COMP" type="hidden" value="1"/> <input name="P_PAGE_SHIP" type="hidden" value="1"/>
+<div class="input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="P_ENTREE_ENTETE" name="P_ENTREE_ENTETE" placeholder="IMO, Name, Company" type="text"/> <span class="input-group-btn"> <input id="P_ENTREE_ENTETE_HIDDEN" name="P_ENTREE_ENTETE_HIDDEN" type="hidden" value=""/>
+<button class="btn btn-default" type="submit">
+<i class="icon-search icon-sm"></i>
+</button>
+</span>
+</div>
+</form>
+
+</div>
+<div class="table-cell">
+<ul class="nav">
+<li class="dropdown dropdown-arrow" id="user_menu_container">
+<a class="dropdown-toggle text-overflow text-left" href="#"> <span><i class="icon-user icon-md"></i></span>
+</a>
+<ul class="dropdown-menu user-menu panel panel-success no-border no-padding no-radius noclose">
+<li class="panel-body" id="guest-register">
+
+<form class="text-left" role="form">
+<div class="pull-left">
+<i class="icon-unlock icon-md"></i>
+</div>
+<div class="access-body">
+<h3>
+Welcome
+</h3>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="clearfix h20"></div>
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul class="no-margin">
+<li><a href="../public/HomePage?fs=ShipInspection&amp;P_ACTION=NEW_CONNECTION">
+Logout <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<a href="Registration?fs=ShipInspection"> My profile <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=Feedback"> Give your opinion <i class="icon-arrow-right icon-sm"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+</form> 
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-sm-6 col-lg-7 navbar-center">
+<ul class="nav navbar-nav text-left">
+
+<li>
+<a href="../public/HomePage?fs=ShipInspection"> Home <i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm">
+</i>
+</a>
+</li>
+
+
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/ShipSubcription?fs=ShipInspection" id="dropdownMenuMyEquasis">
+My Equasis <i class="icon-chevron-down icon-sm hidden-xs"></i>
+<i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenuMyEquasis" class="dropdown-menu">
+<li><a href="../restricted/ShipSubcription?fs=ShipInspection"><i class="icon-caret-right"></i> Ship sign up
+</a></li>
+<li><a href="../restricted/CompanySubcription?fs=ShipInspection"><i class="icon-caret-right"></i> Company sign up
+</a></li>
+<li><a href="../restricted/SurveyList?fs=ShipInspection"><i class="icon-caret-right"></i> Survey
+</a></li>
+</ul>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/About?fs=ShipInspection" id="dropdownMenu1">
+About Equasis <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/About?fs=ShipInspection&amp;P_ABOUT=MainConcern.html">
+<i class="icon-caret-right"></i> Overview
+</a></li>
+<li><a href="../public/About?fs=ShipInspection&amp;P_ABOUT=MoUText.html">
+<i class="icon-caret-right"></i> MOU text
+</a></li>
+<li><a href="../public/About?fs=ShipInspection&amp;P_ABOUT=Org.html">
+<i class="icon-caret-right"></i> Organisation
+</a></li>
+<li><a href="../public/DataUpdatePublic?fs=ShipInspection&amp;P_PAGE=1">
+<i class="icon-caret-right"></i> Data update
+</a></li>
+<li><a href="../public/About?fs=ShipInspection&amp;P_ABOUT=Providers.html">
+<i class="icon-caret-right"></i> Data-Providers
+</a></li>
+<li><a href="../public/About?fs=ShipInspection&amp;P_ABOUT=Events.html">
+<i class="icon-caret-right"></i> Events
+</a></li>
+<li><a href="../restricted/FlagPerf?fs=ShipInspection">
+<i class="icon-caret-right"></i> Flag Perf.
+</a></li>
+<li><a href="../restricted/ROPerf?fs=ShipInspection">
+<i class="icon-caret-right"></i> RO Perf.
+</a></li>
+<li><a href="../restricted/RatConv?fs=ShipInspection"> <i class="icon-caret-right"></i> IMO conventions
+</a></li>
+</ul>
+
+
+<li>
+<a href="../public/News?fs=ShipInspection&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/Stat?fs=ShipInspection" id="dropdownMenuStatics">
+Statistics <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenuStatics" class="dropdown-menu">
+<li>
+<a href="../restricted/Stat?fs=ShipInspection">
+<i class="icon-caret-right"></i> Annual Reports
+</a>
+</li>
+<li>
+<a href="../restricted/DashBoard?fs=ShipInspection">
+<i class="icon-caret-right"></i> DashBoards
+</a>
+</li>
+</ul>
+</li>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/Support?fs=ShipInspection" id="dropdownMenu1">
+Support <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/Support?fs=ShipInspection&amp;P_SUPPORT=Help.html">
+<i class="icon-caret-right"></i> Help
+</a></li>
+<li><a href="../public/Support?fs=ShipInspection&amp;P_SUPPORT=Faq.html">
+<i class="icon-caret-right"></i> Faq
+</a></li>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+<i class="icon-caret-right"></i> Report an Issue
+</a></li>
+<li><a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=Feedback">
+<i class="icon-caret-right"></i> Give your opinion
+</a></li>
+</ul>
+
+</li></li></li></ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="remove-spaces-alert" id="cookiesDisabled">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">You don't have Cookies enabled in your browser.<br/>Cookies help us deliver our services. By using our services, you agree to our use of Cookies.
+<br/>The Equasis Website use Cookies as a part of its core functionality, and if you browse this website without Cookies enabled then you won't have the full experience that you normally would.<br/>This website may not work properly.</strong></p>
+</div>
+</div>
+</div>
+<div class="remove-spaces-alert" id="browser">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">Your browser is not supported by Equasis Website.
+</strong></p>
+</div>
+</div>
+</div>
+
+<div class="hidden-xs" id="breadcrumb">
+<ul id="breadcrumb">
+<li><a href="HomePage?fs=ShipInspection" id="first"><i class="icon-home"></i></a></li>
+<li><a href="null&amp;lienFooter=true">Search</a></li>
+<li id="current">Inspections</li>
+</ul>
+</div>
+<section class="hidden-lg hidden-sm hidden-md" id="title">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div>
+<p>
+<span>
+<a class="social" href="null&amp;lienFooter=true"> <i class="icon-arrow-left icon-md"></i> Back to Search</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<section class="navbar-details">
+<div class="container-fluid font-size-sm">
+<div class="row gris-bleu-traffic">
+
+<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-12 col-xs-12 no-padding">
+<form action="ShipSubcription?fs=ShipInspection">
+<button class="btn btn-default btn-normal bleu-equasis btn-results" type="submit">
+Go to My Equasis
+<i class="icon-arrow-right icon-sm pull"></i>
+</button>
+</form>
+</div>
+<div class="col-lg-8 col-lg-pull-4 col-md-8 col-md-pull-4 col-sm-12 col-xs-12 no-padding">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<h3>Inspections</h3>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="pull-right">
+<p>
+
+
+<a onclick="document.formOngletShip.action ='ShipInspection?fs=ShipInspection'; document.formOngletShip.event.value='AddShip';document.formOngletShip.submit();">
+<i class="icon-star-empty icon-sm"></i>
+</a>
+<a onclick="javascript:window.open('../restricted/ShipFop?fs=ShipInspection&amp;IMO=9074729')">
+<i class="icon-download-alt icon-sm"></i>
+</a>
+<a class="hiddem-sm hidden-xs" href="#" onclick="imprimerPage()">
+<i class="icon-print icon-sm"></i>
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="row orange-equasis">
+<div class="separator orange-equasis"></div>
+</div>
+</div>
+</section>
+
+<section class="gris-clair-login">
+<div class="container-fluid font-size-sm info-details no-padding white">
+<div class="row-fluid">
+
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div class="row white">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+<h4 class="color-gris-bleu-copyright">
+<b>KAVITA</b>
+- IMO n° <b>9074729</b>
+</h4>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-lg hidden-md">
+<div class="access-item access-box white">
+<div class="access-body">
+<ul class="list-group borderless">
+<li class="list-group-item">
+<a class="a-inverse" href="https://www.vesseltracker.com/en/Ships/-9074729.html" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>
+See picture on VesselTracker
+</b>
+</a>
+</li>
+<li class="list-group-item">
+<a class="a-inverse" href="http://www.marinetraffic.com/en/photos/of/ships/imo:9074729" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>See picture on MarineTraffic </b>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="row white">
+<div class="col-sm-12 col-xs-12 hidden-lg hidden-md no-padding">
+<div class="separator orange-equasis"></div>
+<div class="clearfix h15"></div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<p>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Flag </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<img src="../Static/img/flags/PLW.png"/>
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(Palau (Republic of))
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Call Sign </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+T8A2441
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Gross tonnage </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+15899
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(since 01/02/2018)
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>DWT </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+26389
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Type of ship </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+General Cargo Ship
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(during 1995)
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Year of build </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+1995
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Status </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+Broken Up
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(since 25/09/2025)
+</div>
+</div>
+<br/>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<p class="badge gris-bleu-copyright badge-notification">
+Last update of ship particulars
+2026-05-26
+</p>
+</div>
+</div>
+</p></div>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<div class="access-item access-box white">
+<div class="access-body">
+<ul class="list-group borderless">
+<li class="list-group-item">
+<a class="a-inverse" href="https://www.vesseltracker.com/en/Ships/-9074729.html" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>
+See picture on VesselTracker
+</b>
+</a>
+</li>
+<li class="list-group-item">
+<a class="a-inverse" href="http://www.marinetraffic.com/en/photos/of/ships/imo:9074729" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>See picture on MarineTraffic </b>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="clearfix h25"></div>
+<section class="grey_white_boxes">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="row">
+<form method="post" name="formOngletShip">
+<input name="P_IMO" type="hidden" value="9074729"/>
+<input name="P_COMP" type="hidden"/>
+<input name="event" type="hidden" value=""/>
+<input name="P_INSP" type="hidden" value=""/>
+</form>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-right-ship">
+<button class="btn btn-default btn-normal orange-equasis btn-results active padding-right-ship padding-left-company" onclick="document.formOngletShip.action ='ShipInfo?fs=ShipInspection';document.formOngletShip.submit();" type="button">
+Ship info
+</button>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-right-ship padding-left-company">
+<button class="btn btn-default btn-normal btn-results padding-right-ship btn-inactive" type="button">
+Inspections (86)
+</button>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-left-company">
+<button class="btn btn-default btn-normal orange-equasis btn-results active padding-right-ship padding-left-company" onclick="document.formOngletShip.action ='ShipHistory?fs=ShipInspection';document.formOngletShip.submit();" type="button">
+Ship History
+</button>
+</div>
+</div>
+<div class="clearfix h10"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<form method="post" name="formShipInspection">
+<input name="P_IMO" type="hidden" value="9074729"/>
+<input name="P_INSP" type="hidden"/>
+</form>
+
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Ship Inspection : List of PSC inspections','../Static/MOA/Help/ShipInspection_ListPSC.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse1DD">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-6">
+<div class="row">
+<h3>List of port state controls </h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="row">
+User should note that the result of the same single inspection, when reported to different PSC regimes, may differ because of potential differences between the procedures and the relevant instruments between these regimes.
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="in" id="collapse1DD">
+<br/>
+<div class="container-fluid font-size-sm no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<div class="row">
+<div class="cadre col-sm-12 col-xs-12">
+<div class="formulaire row hidden-xs hidden-sm">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-sub-row-md">
+<div class="clearfix visible-xs-block visible-sm-block"></div>
+<div class="row"></div>
+<div class="row">
+<div class="hidden-xs hidden-sm col-md-12 col-lg-12">
+<div class="row">
+<table class="tableLSDD table table-striped table-responsive">
+<thead>
+<tr>
+<th data-field="Authority">
+Authority
+</th>
+<th data-field="Port of inspection">
+Port of inspection
+</th>
+<th data-field="Date of report">
+Date of report
+</th>
+<th data-field="Detention">
+Detention
+</th>
+<th data-field="PSC Organisation">
+PSC Organisation
+</th>
+<th data-field="Type of inspection">
+Type of inspection
+</th>
+<th data-field="Duration (days)">
+Duration (days)
+</th>
+<th data-field="Number of deficiencies">
+Number of deficiencies
+</th>
+<th data-field="Details">
+Details
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="borderbottom">
+<td rowspan="1">
+Oman
+</td>
+<td rowspan="1">
+Sohar
+</td>
+<td rowspan="1">
+2025-01-08
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+8
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='6230545';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Oman
+</td>
+<td rowspan="1">
+Sohar
+</td>
+<td rowspan="1">
+2023-02-15
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+8
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5912808';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="2">
+Romania
+</td>
+<td rowspan="2">
+Constanta
+</td>
+<td rowspan="2">
+2022-02-20
+</td>
+<td rowspan="2">
+N
+</td>
+<td>
+Black Sea MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5723751';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+<tr class="borderbottom">
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5707951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Jordan
+</td>
+<td rowspan="1">
+Aqaba
+</td>
+<td rowspan="1">
+2021-12-30
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Mediterranean MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5715636';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Sudan
+</td>
+<td rowspan="1">
+Port Sudan
+</td>
+<td rowspan="1">
+2021-05-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+5
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5637519';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Yemen
+</td>
+<td rowspan="1">
+Aden
+</td>
+<td rowspan="1">
+2020-02-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5474484';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="2">
+Bulgaria
+</td>
+<td rowspan="2">
+Burgas
+</td>
+<td rowspan="2">
+2019-12-03
+</td>
+<td rowspan="2">
+N
+</td>
+<td>
+Black Sea MoU
+</td>
+<td>
+Expanded inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5418384';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+<tr class="borderbottom">
+<td>
+Paris MoU
+</td>
+<td>
+Expanded inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5397674';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+India
+</td>
+<td rowspan="1">
+Kandla
+</td>
+<td rowspan="1">
+2018-12-19
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5358460';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Egypt
+</td>
+<td rowspan="1">
+Safaga
+</td>
+<td rowspan="1">
+2018-11-05
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Mediterranean MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5190694';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Benin
+</td>
+<td rowspan="1">
+Cotonou
+</td>
+<td rowspan="1">
+2018-01-05
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Abuja MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='5349468';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Malaysia
+</td>
+<td rowspan="1">
+Port Kelang
+</td>
+<td rowspan="1">
+2017-07-25
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+4
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4992658';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Egypt
+</td>
+<td rowspan="1">
+Dumyat (Damietta)
+</td>
+<td rowspan="1">
+2016-12-29
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Mediterranean MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4875979';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Finland
+</td>
+<td rowspan="1">
+Kalajoki
+</td>
+<td rowspan="1">
+2016-09-01
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4524295';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Lithuania
+</td>
+<td rowspan="1">
+Klaipeda
+</td>
+<td rowspan="1">
+2016-08-13
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4519205';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Canada
+</td>
+<td rowspan="1">
+Trois-Rivières
+</td>
+<td rowspan="1">
+2015-09-05
+</td>
+<td rowspan="1">
+Y
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+30
+</td>
+<td>
+7
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4420184';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Philadelphia, Pennsylvania
+</td>
+<td rowspan="1">
+2015-08-26
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+5
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4409529';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Philadelphia, Pennsylvania
+</td>
+<td rowspan="1">
+2015-07-16
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4390721';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Houston, Texas
+</td>
+<td rowspan="1">
+2015-04-24
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4370951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Morocco
+</td>
+<td rowspan="1">
+Safi
+</td>
+<td rowspan="1">
+2015-03-23
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Mediterranean MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4843644';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+India
+</td>
+<td rowspan="1">
+Vishakhapatnam
+</td>
+<td rowspan="1">
+2015-01-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4347463';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Portland, Oregon
+</td>
+<td rowspan="1">
+2014-09-18
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+8
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4325714';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+New Orleans, Louisiana
+</td>
+<td rowspan="1">
+2014-03-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4218319';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Latvia
+</td>
+<td rowspan="1">
+Ventspils
+</td>
+<td rowspan="1">
+2014-02-07
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4212842';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United Kingdom
+</td>
+<td rowspan="1">
+Newport (wight)
+</td>
+<td rowspan="1">
+2013-10-07
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4187521';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United Kingdom
+</td>
+<td rowspan="1">
+Londonderry
+</td>
+<td rowspan="1">
+2013-09-12
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4180589';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Canada
+</td>
+<td rowspan="1">
+Port cartier
+</td>
+<td rowspan="1">
+2013-06-17
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4157250';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Morehead City, North Carolina
+</td>
+<td rowspan="1">
+2013-05-31
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4155837';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Brazil
+</td>
+<td rowspan="1">
+Rio Grande Rs
+</td>
+<td rowspan="1">
+2013-05-13
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Vina Del Mar MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4151855';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Argentina
+</td>
+<td rowspan="1">
+San Nicolas De Los Arroyos
+</td>
+<td rowspan="1">
+2012-10-27
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Vina Del Mar MoU
+</td>
+<td>
+Re-inspection
+</td>
+<td>
+</td>
+<td>
+7
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4108159';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Russia
+</td>
+<td rowspan="1">
+Saint petersburg
+</td>
+<td rowspan="1">
+2012-06-07
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+Expanded inspection
+</td>
+<td>
+</td>
+<td>
+5
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4164995';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Ireland
+</td>
+<td rowspan="1">
+Foynes
+</td>
+<td rowspan="1">
+2011-11-30
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4007298';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Tampa, Florida
+</td>
+<td rowspan="1">
+2011-08-30
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4082302';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+New Orleans, Louisiana
+</td>
+<td rowspan="1">
+2011-06-22
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3893945';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+New Orleans, Louisiana
+</td>
+<td rowspan="1">
+2011-06-03
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3885143';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="2">
+Honduras
+</td>
+<td rowspan="2">
+Cortes
+</td>
+<td rowspan="2">
+2011-05-16
+</td>
+<td rowspan="2">
+N
+</td>
+<td>
+Vina Del Mar MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4031702';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+<tr class="borderbottom">
+<td>
+Vina Del Mar MoU
+</td>
+<td>
+Re-inspection
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4031703';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+New Orleans, Louisiana
+</td>
+<td rowspan="1">
+2011-04-28
+</td>
+<td rowspan="1">
+Y
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+5
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3884649';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Spain
+</td>
+<td rowspan="1">
+Gijón
+</td>
+<td rowspan="1">
+2011-03-24
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+4
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3869036';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Belgium
+</td>
+<td rowspan="1">
+Ghent
+</td>
+<td rowspan="1">
+2011-02-12
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3859702';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2010-11-18
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3854225';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2010-10-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3851543';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2010-09-02
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3809717';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2010-08-04
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3807218';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Australia
+</td>
+<td rowspan="1">
+Brisbane
+</td>
+<td rowspan="1">
+2010-08-01
+</td>
+<td rowspan="1">
+Y
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+N/A
+</td>
+<td>
+14
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3798391';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2010-05-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3784782';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Canada
+</td>
+<td rowspan="1">
+Churchill
+</td>
+<td rowspan="1">
+2009-10-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+Expanded inspection
+</td>
+<td>
+</td>
+<td>
+25
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3964788';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2009-05-28
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3718686';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2009-05-22
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3718685';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Poland
+</td>
+<td rowspan="1">
+Gdynia
+</td>
+<td rowspan="1">
+2009-03-03
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3948345';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Germany
+</td>
+<td rowspan="1">
+Hamburg
+</td>
+<td rowspan="1">
+2009-01-12
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+8
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3944751';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Russia
+</td>
+<td rowspan="1">
+Murmansk
+</td>
+<td rowspan="1">
+2008-03-01
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3924141';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Philadelphia, Pennsylvania
+</td>
+<td rowspan="1">
+2007-12-28
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3647583';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Canada
+</td>
+<td rowspan="1">
+Saint John
+</td>
+<td rowspan="1">
+2007-09-12
+</td>
+<td rowspan="1">
+Y
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+More detailed inspection
+</td>
+<td>
+1
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3912578';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Portugal
+</td>
+<td rowspan="1">
+Setúbal
+</td>
+<td rowspan="1">
+2006-09-04
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Paris MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2736979';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Iran
+</td>
+<td rowspan="1">
+Bandar Abbas
+</td>
+<td rowspan="1">
+2006-07-29
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+6
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='4386603';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+New Orleans, Louisiana
+</td>
+<td rowspan="1">
+2006-04-13
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3537687';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2006-01-27
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2723481';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2005-09-14
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2680354';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Portland, Oregon
+</td>
+<td rowspan="1">
+2005-08-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3531171';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+Portland, Oregon
+</td>
+<td rowspan="1">
+2005-06-28
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+Standard Examination
+</td>
+<td>
+</td>
+<td>
+3
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3529369';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2005-04-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2498327';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2005-02-08
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2718846';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2004-08-11
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2490363';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2004-07-09
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2485821';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2004-03-01
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2476689';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2004-02-27
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2477162';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO San Francisco
+</td>
+<td rowspan="1">
+2004-02-03
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2444620';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2003-08-21
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2466581';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+</td>
+<td rowspan="1">
+</td>
+<td rowspan="1">
+2003-07-18
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2464590';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Australia
+</td>
+<td rowspan="1">
+Newcastle
+</td>
+<td rowspan="1">
+2003-07-14
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Initial inspection
+</td>
+<td>
+</td>
+<td>
+10
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='3597665';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO San Francisco
+</td>
+<td rowspan="1">
+2003-01-28
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2354737';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Portland (or)
+</td>
+<td rowspan="1">
+2002-12-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2277520';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Japan
+</td>
+<td rowspan="1">
+Yokkaichi
+</td>
+<td rowspan="1">
+2002-05-20
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2238346';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Japan
+</td>
+<td rowspan="1">
+Shikoku
+</td>
+<td rowspan="1">
+2001-12-11
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2231603';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Malaysia
+</td>
+<td rowspan="1">
+Kuantan
+</td>
+<td rowspan="1">
+2001-07-05
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2225290';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Japan
+</td>
+<td rowspan="1">
+Tokuyama
+</td>
+<td rowspan="1">
+2001-06-15
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2223483';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Portland (or)
+</td>
+<td rowspan="1">
+2001-04-26
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2120545';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Australia
+</td>
+<td rowspan="1">
+Geelong
+</td>
+<td rowspan="1">
+2001-02-16
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2217926';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Portland (or)
+</td>
+<td rowspan="1">
+2000-11-04
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2113403';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Canada
+</td>
+<td rowspan="1">
+Vancouver
+</td>
+<td rowspan="1">
+2000-11-01
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2214761';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+Japan
+</td>
+<td rowspan="1">
+Kinki
+</td>
+<td rowspan="1">
+2000-10-03
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+Tokyo MoU
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2213951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Honolulu
+</td>
+<td rowspan="1">
+2000-03-25
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2104230';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Portland (or)
+</td>
+<td rowspan="1">
+1999-09-01
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2132854';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr class="borderbottom">
+<td rowspan="1">
+United States of America
+</td>
+<td rowspan="1">
+MSO Los Angeles/Long Beach
+</td>
+<td rowspan="1">
+1999-01-22
+</td>
+<td rowspan="1">
+N
+</td>
+<td>
+US Coast Guard
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_INSP.value='2124346';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden-xs hidden-sm col-sm-12">
+<div class="row">
+<br/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+<div class="row">
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2025-01-08</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Oman
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sohar
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+8
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='6230545';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2023-02-15</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Oman
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sohar
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+8
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5912808';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2022-02-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Romania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Constanta
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Black Sea MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5723751';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5707951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2021-12-30</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Jordan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Aqaba
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Mediterranean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5715636';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2021-05-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sudan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Port Sudan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+5
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5637519';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2020-02-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Yemen
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Aden
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5474484';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2019-12-03</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Bulgaria
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Burgas
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Black Sea MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Expanded inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5418384';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Expanded inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5397674';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2018-12-19</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+India
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Kandla
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5358460';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2018-11-05</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Egypt
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Safaga
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Mediterranean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5190694';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2018-01-05</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Benin
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Cotonou
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Abuja MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='5349468';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2017-07-25</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Malaysia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Port Kelang
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+4
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4992658';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2016-12-29</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Egypt
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Dumyat (Damietta)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Mediterranean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4875979';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2016-09-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Finland
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Kalajoki
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4524295';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2016-08-13</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Lithuania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Klaipeda
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4519205';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-09-05</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Canada
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Trois-Rivières
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Y
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Duration
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+30
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+7
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4420184';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-08-26</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Philadelphia, Pennsylvania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+5
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4409529';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-07-16</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Philadelphia, Pennsylvania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4390721';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-04-24</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Houston, Texas
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4370951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-03-23</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Morocco
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Safi
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Mediterranean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4843644';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-01-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+India
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Vishakhapatnam
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4347463';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2014-09-18</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Portland, Oregon
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+8
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4325714';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2014-03-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+New Orleans, Louisiana
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4218319';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2014-02-07</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Latvia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Ventspils
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4212842';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2013-10-07</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United Kingdom
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Newport (wight)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4187521';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2013-09-12</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United Kingdom
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Londonderry
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4180589';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2013-06-17</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Canada
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Port cartier
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4157250';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2013-05-31</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Morehead City, North Carolina
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4155837';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2013-05-13</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Brazil
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Rio Grande Rs
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Vina Del Mar MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4151855';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2012-10-27</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Argentina
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+San Nicolas De Los Arroyos
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Vina Del Mar MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Re-inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+7
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4108159';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2012-06-07</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Russia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Saint petersburg
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Expanded inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+5
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4164995';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-11-30</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Ireland
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Foynes
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4007298';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-08-30</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Tampa, Florida
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4082302';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-06-22</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+New Orleans, Louisiana
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3893945';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-06-03</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+New Orleans, Louisiana
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3885143';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-05-16</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Honduras
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Cortes
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Vina Del Mar MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4031702';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Vina Del Mar MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Re-inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4031703';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-04-28</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+New Orleans, Louisiana
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Y
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Duration
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+5
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3884649';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-03-24</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Spain
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Gijón
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+4
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3869036';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2011-02-12</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Belgium
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Ghent
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3859702';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-11-18</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3854225';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-10-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3851543';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-09-02</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3809717';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-08-04</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3807218';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-08-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Australia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Brisbane
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Y
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Duration
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N/A
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+14
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3798391';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-05-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3784782';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2009-10-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Canada
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Churchill
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Expanded inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+25
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3964788';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2009-05-28</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3718686';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2009-05-22</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3718685';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2009-03-03</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Poland
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Gdynia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3948345';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2009-01-12</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Germany
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Hamburg
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+8
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3944751';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2008-03-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Russia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Murmansk
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3924141';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2007-12-28</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Philadelphia, Pennsylvania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3647583';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2007-09-12</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Canada
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Saint John
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Y
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+More detailed inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Duration
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3912578';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2006-09-04</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Portugal
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Setúbal
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Paris MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2736979';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2006-07-29</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Iran
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Bandar Abbas
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+6
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='4386603';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2006-04-13</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+New Orleans, Louisiana
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3537687';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2006-01-27</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2723481';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2005-09-14</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2680354';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2005-08-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Portland, Oregon
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3531171';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2005-06-28</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Portland, Oregon
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Standard Examination
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+3
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3529369';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2005-04-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2498327';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2005-02-08</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2718846';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2004-08-11</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2490363';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2004-07-09</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2485821';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2004-03-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2476689';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2004-02-27</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2477162';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2004-02-03</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO San Francisco
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2444620';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2003-08-21</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2466581';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2003-07-18</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2464590';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2003-07-14</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Australia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Newcastle
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Indian Ocean MoU</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Type
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Initial inspection
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+10
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='3597665';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2003-01-28</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO San Francisco
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2354737';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2002-12-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Portland (or)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2277520';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2002-05-20</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Japan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Yokkaichi
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2238346';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2001-12-11</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Japan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Shikoku
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2231603';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2001-07-05</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Malaysia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Kuantan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2225290';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2001-06-15</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Japan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Tokuyama
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2223483';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2001-04-26</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Portland (or)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2120545';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2001-02-16</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Australia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Geelong
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2217926';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2000-11-04</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Portland (or)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2113403';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2000-11-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Canada
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Vancouver
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2214761';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2000-10-03</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Japan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Kinki
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">Tokyo MoU</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2213951';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2000-03-25</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Honolulu
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2104230';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>1999-09-01</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Portland (or)
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2132854';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>1999-01-22</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MSO Los Angeles/Long Beach
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Detention
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+N
+</div>
+</div>
+<div class="col-xs-10 col-sm-10">
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">US Coast Guard</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Def number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="col-xs-2 col-sm-2">
+<a onclick="document.formShipInspection.P_INSP.value='2124346';document.formShipInspection.action='DetailsPSC?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Ship Inspection : Human Deficiencies','../Static/MOA/Help/ShipInsp_HumanDef.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse3">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-6">
+<div class="row">
+<h3>Human element deficiencies </h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse3">
+<br/>
+<div class="container-fluid font-size-sm no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<div class="row">
+<div class="cadre col-sm-12 col-xs-12">
+<div class="formulaire row hidden-xs hidden-sm">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-sub-row-md">
+<div class="clearfix visible-xs-block visible-sm-block"></div>
+<div class="row">
+</div>
+<div class="row">
+<div class="hidden-xs hidden-sm col-md-12 col-lg-12">
+<div class="row">
+<table class="tableLS table table-striped table-responsive">
+<thead>
+<tr>
+<th data-field="PSC Organisation">
+PSC Organisation
+</th>
+<th data-field="Authority">
+Authority
+</th>
+<th data-field="Port of inspection">
+Port of inspection
+</th>
+<th data-field="Type of inspection">
+Type of inspection
+</th>
+<th data-field="Date of report">
+Date of report
+</th>
+<th data-field="Human element deficiencies">
+Human element deficiencies
+</th>
+<th data-field="Details">
+Details
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Oman
+</td>
+<td>
+Sohar
+</td>
+<td>
+</td>
+<td>
+2025-01-08
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='6230545';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Oman
+</td>
+<td>
+Sohar
+</td>
+<td>
+</td>
+<td>
+2023-02-15
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='5912808';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Sudan
+</td>
+<td>
+Port Sudan
+</td>
+<td>
+</td>
+<td>
+2021-05-20
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='5637519';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+US Coast Guard
+</td>
+<td>
+United States of America
+</td>
+<td>
+Philadelphia, Pennsylvania
+</td>
+<td>
+</td>
+<td>
+2015-08-26
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='4409529';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+US Coast Guard
+</td>
+<td>
+United States of America
+</td>
+<td>
+Houston, Texas
+</td>
+<td>
+</td>
+<td>
+2015-04-24
+</td>
+<td>
+1
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='4370951';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+Indian Ocean MoU
+</td>
+<td>
+Australia
+</td>
+<td>
+Brisbane
+</td>
+<td>
+</td>
+<td>
+2010-08-01
+</td>
+<td>
+2
+</td>
+<td>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='3798391';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden-xs hidden-sm col-sm-12">
+<div class="row">
+<br/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+<div class="row">
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2025-01-08</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='6230545';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Indian Ocean MoU
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Oman
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sohar
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2023-02-15</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='5912808';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Indian Ocean MoU
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Oman
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sohar
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2021-05-20</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='5637519';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Indian Ocean MoU
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Sudan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Port Sudan
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-08-26</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='4409529';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+US Coast Guard
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Philadelphia, Pennsylvania
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2015-04-24</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='4370951';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+US Coast Guard
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+United States of America
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Houston, Texas
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+1
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>2010-08-01</strong>
+<a onclick="document.formShipInspection.P_IMO.value='9074729';document.formShipInspection.P_INSP.value='3798391';document.formShipInspection.action='HumanDeficiencies?fs=ShipInspection';document.formShipInspection.submit();">
+<i class="icon-arrow-right external-link icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Org
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Indian Ocean MoU
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Authority
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Australia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Port
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Brisbane
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Element
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+2
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="footer">
+<section class="separator orange-equasis" id="news-separator"></section>
+<section class="white" id="contributors">
+<div class="container-fluid col-centered">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<h3>Equasis's contributors</h3>
+<div class="col-md-offset-1">
+<div class="row">
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.tc.gc.ca/eng/marinesafety/oep-inspection-menu-770.htm" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.emsa.europa.eu/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mer.gouv.fr/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mofa.go.jp/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.korea.net/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.norway.no/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.fomento.gob.es/MFOM/LANG_CASTELLANO/DIRECCIONES_GENERALES/MARINA_MERCANTE/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.gov.uk/government/organisations/maritime-and-coastguard-agency" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.dco.uscg.mil/Our-Organization/Assistant-Commandant-for-Prevention-Policy-CG-5P/" target="_blank"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="gris-bleu-traffic" id="sitemap">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+
+<div class="hidden-lg hidden-md col-sm-12 col-xs-12 social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md">
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=ShipInspection&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+Contact us
+</a>
+</p>
+</div>
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=ShipInspection&amp;P_MOA=help">
+<i class="icon-info icon-md"></i>
+Help
+</a>
+</p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+</p>
+</div>
+<div class="row hidden-lg hidden-md">
+<p class="pull-right">
+<a class="social" href="Moa?fs=ShipInspection&amp;P_MOA=faq">
+<i class="icon-question icon-md"></i>
+FAQ
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<h3>Site map</h3>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../public/HomePage?fs=ShipInspection">
+Home
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInspection">
+About Equasis
+</a>
+</li>
+<li>
+<form action="../restricted/Search?fs=ShipInspection" method="post" name="lienSearchFooter">
+<input name="lienFooter" type="hidden" value="true"/>
+</form>
+<a href="#" onclick="document.lienSearchFooter.submit();">
+Search
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInspection&amp;P_ABOUT=Providers.html">
+Data providers
+</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../restricted/Stat?fs=ShipInspection">
+Annual Reports</a>
+</li>
+<li>
+<a href="../public/News?fs=ShipInspection&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+<li>
+<a href="../restricted/ShipSubcription?fs=ShipInspection">
+My Equasis
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInspection&amp;P_ABOUT=EquasisPolicy.html">
+Equasis policy
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 hidden-sm hidden-xs social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="clearfix h30 hidden-sm hidden-xs"></div>
+<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+<span class="no-style hidden-sm hidden-xs">
+or contact us
+<a class="social" href="Moa?fs=ShipInspection&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer class="gris-bleu-copyright" id="footer">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<p>© Copyright 2000-2026; Version : Prod v3.7.1 a; Developed and hosted by French Ministry in charge of the Sea and Fisheries -DGAMPA/SDNUM-Saint-Malo</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<ul class="pull-right">
+<li>
+<a href="../public/Support?fs=ShipInspection&amp;P_SUPPORT=Help.html">
+Help
+</a>
+</li>
+<li>
+<a href="../public/Support?fs=ShipInspection&amp;P_SUPPORT=Faq.html">
+FAQ
+</a>
+</li>
+<li>
+<a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue
+</a>
+</li>
+<li>
+<a href="../authen/Support?fs=ShipInspection&amp;P_SUPPORT=Feedback">
+Give your opinion
+</a>
+</li>
+<li><a class="gototop" href="#" id="gototop"><i class="icon-chevron-up"></i></a></li>
+
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+
+<div aria-labelledby="mymodallabel" class="modal fade" id="modal-help" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header bleu-equasis">
+<button class="close" data-dismiss="modal" type="button">
+<i class="icon-remove-sign"></i>
+</button>
+<h1>
+<i class="icon-info-sign"></i> <span id="modal-title-help"> </span>
+</h1>
+</div>
+<div class="modal-body" id="modal-body-help"></div>
+<div class="modal-footer">
+<button class="btn btn-md gris-bleu-copyright pull-left" data-dismiss="modal" type="button">Close</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
