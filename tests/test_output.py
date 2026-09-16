@@ -5,6 +5,8 @@ from __future__ import annotations
 import csv
 import io
 import json
+import os
+import stat
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -165,3 +167,13 @@ def test_write_output_is_atomic_and_utf8(tmp_path: Path) -> None:
     output.write_output('{"name": "Ålesund"}', target)
     assert target.read_text(encoding="utf-8") == '{"name": "Ålesund"}\n'
     assert list(target.parent.iterdir()) == [target]
+
+
+@pytest.mark.skipif(os.name != "posix", reason="POSIX permissions")
+def test_write_output_respects_umask(tmp_path: Path) -> None:
+    previous = os.umask(0o022)
+    try:
+        target = output.write_output("x", tmp_path / "out.txt")
+    finally:
+        os.umask(previous)
+    assert stat.S_IMODE(target.stat().st_mode) == 0o644
