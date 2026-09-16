@@ -1,236 +1,156 @@
-#!/usr/bin/env python3
-"""
-Credential management following industry best practices
-Supports XDG Base Directory Specification and standard credential hierarchy
+"""Locate, store, and remove Equasis credentials.
+
+Credentials are resolved in this order:
+
+1. ``--username`` and ``--password`` command-line options
+2. ``EQUASIS_USERNAME`` and ``EQUASIS_PASSWORD`` environment variables
+3. The credentials file written by ``equasis configure --setup``
+
+The credentials file lives in the user's configuration directory
+(``$XDG_CONFIG_HOME/equasis-cli`` or ``~/.config/equasis-cli`` on Linux and macOS,
+``%APPDATA%\\equasis-cli`` on Windows) and is created with owner-only permissions.
 """
 
-import os
+from __future__ import annotations
+
+import enum
 import json
-import getpass
-from pathlib import Path
-from typing import Optional, Tuple, Dict, Any
 import logging
+import os
+import stat
+import sys
+import tempfile
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
+APP_NAME = "equasis-cli"
+FILE_NAME = "credentials.json"
+ENV_USERNAME = "EQUASIS_USERNAME"
+ENV_PASSWORD = "EQUASIS_PASSWORD"  # noqa: S105 - environment variable name, not a secret
 
-class CredentialManager:
-    """Manages Equasis credentials following industry best practices"""
 
-    def __init__(self):
-        self.app_name = "equasis-cli"
-        self.config_dir = self._get_config_directory()
-        self.credentials_file = self.config_dir / "credentials.json"
+class CredentialSource(str, enum.Enum):
+    ARGUMENTS = "command-line options"
+    ENVIRONMENT = "environment variables"
+    CONFIG_FILE = "credentials file"
 
-    def _get_config_directory(self) -> Path:
-        """Get configuration directory following XDG Base Directory Specification"""
-        # Follow XDG Base Directory Specification
-        xdg_config_home = os.environ.get('XDG_CONFIG_HOME')
 
-        if xdg_config_home:
-            config_dir = Path(xdg_config_home) / self.app_name
-        else:
-            # Default to ~/.config/equasis-cli on Unix systems
-            home = Path.home()
-            if os.name == 'posix':  # Unix-like systems
-                config_dir = home / '.config' / self.app_name
-            else:  # Windows
-                config_dir = home / '.equasis-cli'
+@dataclass(frozen=True)
+class Credentials:
+    username: str
+    password: str
+    source: CredentialSource
 
-        return config_dir
+    def __repr__(self) -> str:  # never expose the password in logs or tracebacks
+        return f"Credentials(username={self.username!r}, source={self.source.value!r})"
 
-    def get_credentials(self, username_arg: Optional[str] = None,
-                       password_arg: Optional[str] = None) -> Tuple[Optional[str], Optional[str]]:
-        """
-        Get credentials following industry-standard hierarchy:
-        1. Command line arguments (highest priority)
-        2. Environment variables
-        3. Configuration file (lowest priority)
 
-        Returns:
-            Tuple of (username, password) or (None, None) if not found
-        """
-        username = None
-        password = None
+def default_config_dir() -> Path:
+    """Return the platform-appropriate configuration directory."""
+    xdg = os.environ.get("XDG_CONFIG_HOME")
+    if xdg:
+        return Path(xdg) / APP_NAME
+    if sys.platform == "win32":
+        appdata = os.environ.get("APPDATA")
+        if appdata:
+            return Path(appdata) / APP_NAME
+    return Path.home() / ".config" / APP_NAME
 
-        # 1. Command line arguments (highest priority)
-        if username_arg and password_arg:
-            logger.debug("Using credentials from command line arguments")
-            return username_arg, password_arg
 
-        # 2. Environment variables
-        env_username = os.environ.get('EQUASIS_USERNAME')
-        env_password = os.environ.get('EQUASIS_PASSWORD')
+class CredentialStore:
+    """Reads and writes the credentials file and resolves credential sources."""
 
+    def __init__(self, config_dir: Path | None = None) -> None:
+        self.config_dir = config_dir or default_config_dir()
+
+    @property
+    def path(self) -> Path:
+        return self.config_dir / FILE_NAME
+
+    def resolve(
+        self, username: str | None = None, password: str | None = None
+    ) -> Credentials | None:
+        """Return the highest-priority complete set of credentials, if any."""
+        if username and password:
+            return Credentials(username, password, CredentialSource.ARGUMENTS)
+        env_username = os.environ.get(ENV_USERNAME)
+        env_password = os.environ.get(ENV_PASSWORD)
         if env_username and env_password:
-            logger.debug("Using credentials from environment variables")
-            return env_username, env_password
+            return Credentials(env_username, env_password, CredentialSource.ENVIRONMENT)
+        stored = self.load()
+        if stored:
+            return Credentials(stored[0], stored[1], CredentialSource.CONFIG_FILE)
+        return None
 
-        # 3. Configuration file
-        config_username, config_password = self._load_from_config()
-        logger.debug(f"Config file check: username={'set' if config_username else 'not set'}, password={'set' if config_password else 'not set'}")
-        if config_username and config_password:
-            logger.debug(f"Using credentials from config file: {self.credentials_file}")
-            return config_username, config_password
-
-        # Nothing found
-        logger.debug("No credentials found in any source")
-        return None, None
-
-    def _load_from_config(self) -> Tuple[Optional[str], Optional[str]]:
-        """Load credentials from configuration file"""
-        if not self.credentials_file.exists():
-            return None, None
-
+    def load(self) -> tuple[str, str] | None:
+        """Read the credentials file; ``None`` if it is missing or unreadable."""
+        path = self.path
+        if not path.is_file():
+            return None
+        self._warn_if_exposed(path)
         try:
-            with open(self.credentials_file, 'r') as f:
-                config = json.load(f)
-
-            username = config.get('username')
-            password = config.get('password')
-
+            data: Any = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            logger.warning("could not read %s: %s", path, exc)
+            return None
+        if not isinstance(data, dict):
+            logger.warning("ignoring %s: unexpected format", path)
+            return None
+        username, password = data.get("username"), data.get("password")
+        if isinstance(username, str) and isinstance(password, str) and username and password:
             return username, password
+        return None
 
-        except (json.JSONDecodeError, IOError) as e:
-            logger.warning(f"Failed to load credentials from {self.credentials_file}: {e}")
-            return None, None
-
-    def save_credentials(self, username: str, password: str) -> bool:
-        """
-        Save credentials to configuration file
-
-        Args:
-            username: Equasis username
-            password: Equasis password
-
-        Returns:
-            True if successful, False otherwise
-        """
+    def save(self, username: str, password: str) -> Path:
+        """Write credentials atomically with owner-only permissions."""
+        self.config_dir.mkdir(parents=True, exist_ok=True)
+        payload = json.dumps({"username": username, "password": password}, indent=2) + "\n"
+        fd, temp_name = tempfile.mkstemp(prefix=".credentials.", dir=self.config_dir)
         try:
-            # Create config directory if it doesn't exist
-            self.config_dir.mkdir(parents=True, exist_ok=True)
+            if os.name == "posix":
+                os.fchmod(fd, 0o600)
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                handle.write(payload)
+            os.replace(temp_name, self.path)
+        except BaseException:
+            Path(temp_name).unlink(missing_ok=True)
+            raise
+        return self.path
 
-            # Prepare credentials data
-            credentials = {
-                'username': username,
-                'password': password,
-                'created_by': 'equasis-cli',
-                'note': 'Equasis credentials for maritime intelligence tool'
-            }
-
-            # Write credentials file
-            with open(self.credentials_file, 'w') as f:
-                json.dump(credentials, f, indent=2)
-
-            # Set secure permissions (owner read/write only)
-            if os.name == 'posix':
-                self.credentials_file.chmod(0o600)
-
-            logger.info(f"Credentials saved to {self.credentials_file}")
-            return True
-
-        except (IOError, OSError) as e:
-            logger.error(f"Failed to save credentials: {e}")
-            return False
-
-    def clear_credentials(self) -> bool:
-        """Remove stored credentials"""
+    def clear(self) -> bool:
+        """Delete the credentials file. Returns ``True`` if a file was removed."""
         try:
-            if self.credentials_file.exists():
-                self.credentials_file.unlink()
-                logger.info("Stored credentials cleared")
-                return True
-            else:
-                logger.info("No stored credentials found")
-                return True
-
-        except OSError as e:
-            logger.error(f"Failed to clear credentials: {e}")
+            self.path.unlink()
+        except FileNotFoundError:
             return False
+        return True
 
-    def has_stored_credentials(self) -> bool:
-        """Check if credentials are stored in config file"""
-        username, password = self._load_from_config()
-        return bool(username and password)
-
-    def get_credential_sources(self) -> Dict[str, Any]:
-        """Get information about available credential sources for debugging"""
-        sources = {
-            'environment_variables': {
-                'username': bool(os.environ.get('EQUASIS_USERNAME')),
-                'password': bool(os.environ.get('EQUASIS_PASSWORD'))
+    def describe(self) -> dict[str, Any]:
+        """Report which credential sources are configured (never the values)."""
+        stored = self.load()
+        return {
+            "environment": {
+                ENV_USERNAME: bool(os.environ.get(ENV_USERNAME)),
+                ENV_PASSWORD: bool(os.environ.get(ENV_PASSWORD)),
             },
-            'config_file': {
-                'path': str(self.credentials_file),
-                'exists': self.credentials_file.exists(),
-                'has_credentials': self.has_stored_credentials()
+            "file": {
+                "path": str(self.path),
+                "exists": self.path.is_file(),
+                "complete": stored is not None,
+                "username": stored[0] if stored else None,
             },
-            'config_directory': {
-                'path': str(self.config_dir),
-                'exists': self.config_dir.exists()
-            }
         }
 
-        return sources
-
-    def interactive_setup(self) -> bool:
-        """
-        Interactively collect and save credentials
-
-        Returns:
-            True if credentials were saved successfully
-        """
-        print()
-        print("=== Equasis CLI Credential Setup ===")
-        print()
-        print("This will securely store your Equasis credentials for future use.")
-        print(f"Credentials will be saved to: {self.credentials_file}")
-        print()
-
+    @staticmethod
+    def _warn_if_exposed(path: Path) -> None:
+        if os.name != "posix":
+            return
         try:
-            username = input("Equasis Username: ").strip()
-            if not username:
-                print("Username cannot be empty")
-                return False
-
-            password = getpass.getpass("Equasis Password: ").strip()
-            if not password:
-                print("Password cannot be empty")
-                return False
-
-            # Confirm before saving
-            print()
-            confirm = input(f"Save credentials to {self.credentials_file}? [y/N]: ").strip().lower()
-            if confirm not in ['y', 'yes']:
-                print("Setup cancelled")
-                return False
-
-            # Save credentials
-            success = self.save_credentials(username, password)
-
-            if success:
-                print()
-                print("✓ Credentials saved successfully!")
-                print("  You can now use equasis commands without --username/--password flags")
-                print()
-                print("Security notes:")
-                print(f"  • File permissions set to owner-only (600)")
-                print(f"  • To remove credentials later: equasis configure --clear")
-                print()
-                return True
-            else:
-                print("✗ Failed to save credentials")
-                return False
-
-        except KeyboardInterrupt:
-            print()
-            print("Setup cancelled by user")
-            return False
-        except Exception as e:
-            print(f"Error during setup: {e}")
-            return False
-
-
-def get_credential_manager() -> CredentialManager:
-    """Get a credential manager instance"""
-    return CredentialManager()
+            mode = path.stat().st_mode
+        except OSError:
+            return
+        if mode & (stat.S_IRWXG | stat.S_IRWXO):
+            logger.warning("%s is readable by other users; run: chmod 600 %s", path, path)

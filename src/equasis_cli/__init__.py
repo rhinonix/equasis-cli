@@ -1,35 +1,65 @@
-#!/usr/bin/env python3
-"""
-Equasis CLI Tool - A command-line interface for accessing Equasis maritime data
+"""equasis-cli: command-line and Python access to Equasis maritime data.
 
-This package provides programmatic access to vessel and fleet information
-from the Equasis database through a clean, scriptable CLI interface.
+Example::
+
+    from equasis_cli import EquasisClient
+
+    with EquasisClient("user@example.com", "password") as client:
+        vessel = client.get_vessel("9811000")
+        print(vessel.name, vessel.flag, len(vessel.inspections))
 """
 
-from .main import main
-from .client import EquasisClient, SimpleVesselInfo, FleetInfo
-from .parser import EquasisParser, EquasisVesselData, VesselBasicInfo
-from .formatter import OutputFormatter
-from .banner import get_version, display_banner, check_credentials, display_credentials_note
-from .interactive import InteractiveShell
+import logging
 
 from ._version import __version__
-__author__ = "rhinonix"
-__email__ = "rhinonix.github.exclaim769@slmail.me"
+from .client import EquasisClient
+from .exceptions import (
+    AuthenticationError,
+    ConfigurationError,
+    EquasisError,
+    InvalidInputError,
+    LayoutChangedError,
+    NetworkError,
+    NotFoundError,
+    RateLimitedError,
+    SessionExpiredError,
+)
+from .models import (
+    Company,
+    CompanySummary,
+    Fleet,
+    FleetVessel,
+    Inspection,
+    SearchResults,
+    ShipSummary,
+    Vessel,
+    to_jsonable,
+)
+from .transport import RetryPolicy, Transport
 
-# Public API
+logging.getLogger(__name__).addHandler(logging.NullHandler())
+
 __all__ = [
-    'main',
-    'EquasisClient',
-    'EquasisParser',
-    'EquasisVesselData',
-    'VesselBasicInfo',
-    'SimpleVesselInfo',
-    'FleetInfo',
-    'OutputFormatter',
-    'get_version',
-    'display_banner',
-    'check_credentials',
-    'display_credentials_note',
-    'InteractiveShell'
+    "AuthenticationError",
+    "Company",
+    "CompanySummary",
+    "ConfigurationError",
+    "EquasisClient",
+    "EquasisError",
+    "Fleet",
+    "FleetVessel",
+    "Inspection",
+    "InvalidInputError",
+    "LayoutChangedError",
+    "NetworkError",
+    "NotFoundError",
+    "RateLimitedError",
+    "RetryPolicy",
+    "SearchResults",
+    "SessionExpiredError",
+    "ShipSummary",
+    "Transport",
+    "Vessel",
+    "__version__",
+    "to_jsonable",
 ]

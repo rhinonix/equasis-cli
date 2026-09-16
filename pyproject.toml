@@ -62,7 +62,7 @@ Issues = "https://github.com/rhinonix/equasis-cli/issues"
 Changelog = "https://github.com/rhinonix/equasis-cli/blob/main/CHANGELOG.md"
 
 [project.scripts]
-equasis = "equasis_cli.main:main"
+equasis = "equasis_cli.cli:run"
 
 [tool.setuptools.dynamic]
 version = { attr = "equasis_cli._version.__version__" }
@@ -77,18 +77,9 @@ equasis_cli = ["py.typed"]
 line-length = 100
 target-version = "py310"
 src = ["src", "tests"]
-# Legacy modules are excluded until they are rewritten in the core reliability
-# refactor; new and rewritten code must pass the full rule set.
-extend-exclude = [
-    "src/equasis_cli/banner.py",
-    "src/equasis_cli/client.py",
-    "src/equasis_cli/credentials.py",
-    "src/equasis_cli/formatter.py",
-    "src/equasis_cli/interactive.py",
-    "src/equasis_cli/main.py",
-    "src/equasis_cli/parser.py",
-    "src/equasis_cli/__init__.py",
-]
+# The interactive shell is excluded until it is rewritten; all other code must
+# pass the full rule set.
+extend-exclude = ["src/equasis_cli/interactive.py"]
 
 [tool.ruff.lint]
 select = [
@@ -116,8 +107,9 @@ mypy_path = "src"
 files = ["src/equasis_cli"]
 
 [[tool.mypy.overrides]]
-module = ["bs4.*"]
-ignore_missing_imports = true
+# Type checking of the interactive shell is enabled once it is rewritten.
+module = ["equasis_cli.interactive"]
+ignore_errors = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -25,10 +25,11 @@ from prompt_toolkit.completion import Completer, Completion, CompleteEvent
 from prompt_toolkit.document import Document
 from prompt_toolkit.filters import Condition
 
+from . import output
+from .banner import interactive_banner
 from .client import EquasisClient
-from .formatter import OutputFormatter
-from .banner import display_banner, display_credentials_note, check_credentials, Colors, get_interactive_banner
-from .credentials import get_credential_manager
+from .credentials import CredentialStore
+from .exceptions import EquasisError
 
 logger = logging.getLogger(__name__)
 
@@ -140,7 +141,6 @@ class InteractiveShell:
 
     def __init__(self):
         self.client: Optional[EquasisClient] = None
-        self.formatter = OutputFormatter()
         self.output_format = 'table'
         self.debug_mode = False
         self.logged_in = False
@@ -149,9 +149,6 @@ class InteractiveShell:
         # Connection and status tracking
         self.connection_status = "Not connected"
         self.last_operation = ""
-
-        # Color support
-        self.color_support = Colors.supports_color()
 
         # Menu visibility flags
         self.show_help_menu = False
@@ -910,43 +907,38 @@ class InteractiveShell:
         return params, all_required_present
 
     def ensure_authenticated(self) -> bool:
-        """Ensure client is authenticated"""
-        if not self.client:
-            credential_manager = get_credential_manager()
-            username, password = credential_manager.get_credentials()
-
-            if not username or not password:
-                self._append_output("\nNo credentials found. Please configure credentials first.")
-                self._append_output("Run: equasis configure --setup")
+        """Create the client on first use; the client logs in and renews sessions itself."""
+        if self.client is None:
+            credentials = CredentialStore().resolve()
+            if credentials is None:
+                self._append_output("No credentials found. Run: equasis configure --setup")
                 return False
-
+            self.client = EquasisClient(credentials.username, credentials.password)
+        if not self.client.logged_in:
             try:
                 self.loading_message = "Connecting..."
                 self.loading_detail = "Authenticating with Equasis"
-                self.last_operation = "Connecting..."
-
-                self.client = EquasisClient(username, password)
-                self.logged_in = self.client.login()
-
-                if self.logged_in:
-                    self.connection_status = "Connected"
-                    self.last_operation = ""
-                else:
-                    self._append_output("✗ Authentication failed")
-                    self.last_operation = "Auth failed"
-                    return False
-
-            except Exception as e:
-                self._append_output(f"✗ Connection error: {e}")
-                self.last_operation = "Connection error"
+                self.client.login()
+            except EquasisError as e:
+                self._append_output(f"Login failed: {e}")
+                self.last_operation = "Login failed"
                 return False
-
-        if not self.logged_in:
-            self.last_operation = "Reconnecting..."
-            self.logged_in = self.client.login()
-            self.last_operation = "" if self.logged_in else "Reconnect failed"
-
+        self.logged_in = self.client.logged_in
         return self.logged_in
+
+    def _emit(self, result, params) -> None:
+        """Render a result and show it or save it to the /output file."""
+        target = params.get('output')
+        explicit = params.get('format')
+        if target and target in output.FORMATS:
+            explicit, target = target, None
+        fmt = output.resolve_format(explicit, target, default=self.output_format)
+        text = output.render(result, fmt)
+        if target:
+            path = output.write_output(text, target)
+            self._append_output(f"Saved {fmt} output to {path}")
+        else:
+            self._append_output(text.rstrip())
 
     def _cmd_vessel(self, args: str):
         """Handle vessel command"""
@@ -961,39 +953,21 @@ class InteractiveShell:
         if not self.ensure_authenticated():
             return
 
-        output_format = params.get('format', self.output_format)
-        output_file = params.get('output')
-
         try:
-            self.loading_message = "Osinting..."
-            self.loading_detail = f"Searching IMO {params['imo']}"
-            self.last_operation = f"Fetching IMO {params['imo']}..."
-
-            vessel = self.client.search_vessel_by_imo(params['imo'])
-
-            if vessel:
-                output = self.formatter.format_vessel_info(vessel, output_format)
-                if output_file:
-                    with open(output_file, 'w') as f:
-                        f.write(output)
-                    self._append_output(f"✓ Vessel data saved to {output_file}")
-                else:
-                    self._append_output(output)
-                self.last_operation = f"✓ Vessel {params['imo']} found"
-            else:
-                self._append_output(f"No vessel found with IMO: {params['imo']}")
-                self.last_operation = f"✗ Vessel {params['imo']} not found"
-
-        except Exception as e:
+            self.loading_message = "Retrieving..."
+            self.loading_detail = f"IMO {params['imo']}"
+            vessel = self.client.get_vessel(params['imo'])
+            self._emit(vessel, params)
+            self.last_operation = f"Vessel {vessel.imo} retrieved"
+        except EquasisError as e:
             self._append_output(f"Error: {e}")
-            self.last_operation = f"✗ Error"
+            self.last_operation = "Error"
 
     def _cmd_search(self, args: str):
         """Handle search command"""
         expected_params = {'name': False, 'imo': False, 'format': False, 'output': False}
         params, _ = self.parse_slash_command(args, expected_params)
 
-        # Require either /name or /imo
         if not params.get('name') and not params.get('imo'):
             self._append_output("Error: Missing required parameter /name or /imo")
             return
@@ -1001,30 +975,17 @@ class InteractiveShell:
         if not self.ensure_authenticated():
             return
 
-        output_format = params.get('format', self.output_format)
-
         try:
+            self.loading_message = "Searching..."
             if params.get('imo'):
-                # Search by IMO
-                self.last_operation = f"Searching IMO '{params['imo']}'..."
-                vessels = self.client.search_vessel_by_name(params['imo'])
+                results = self.client.search_ships(imo=params['imo'])
             else:
-                # Search by name
-                self.last_operation = f"Searching '{params['name']}'..."
-                vessels = self.client.search_vessel_by_name(params['name'])
-
-            if vessels:
-                output = self.formatter.format_simple_vessel_list(vessels, output_format)
-                self._append_output(output)
-                self.last_operation = f"✓ Found {len(vessels)} vessel(s)"
-            else:
-                search_term = params.get('imo') or params.get('name')
-                self._append_output(f"No vessels found matching: {search_term}")
-                self.last_operation = "✗ No vessels found"
-
-        except Exception as e:
+                results = self.client.search(params['name'])
+            self._emit(results, params)
+            self.last_operation = f"{len(results.ships)} ships, {len(results.companies)} companies"
+        except EquasisError as e:
             self._append_output(f"Error: {e}")
-            self.last_operation = "✗ Error"
+            self.last_operation = "Error"
 
     def _cmd_fleet(self, args: str):
         """Handle fleet command"""
@@ -1105,7 +1066,7 @@ class InteractiveShell:
         client_logger.setLevel(logging.WARNING)
 
         # Show banner in output buffer
-        banner_text = get_interactive_banner()
+        banner_text = interactive_banner()
         self._append_output(banner_text)
 
         # Run the application
