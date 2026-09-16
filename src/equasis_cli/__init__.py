@@ -13,7 +13,7 @@ from .formatter import OutputFormatter
 from .banner import get_version, display_banner, check_credentials, display_credentials_note
 from .interactive import InteractiveShell
 
-__version__ = "2.0.0"
+from ._version import __version__
 __author__ = "rhinonix"
 __email__ = "rhinonix.github.exclaim769@slmail.me"
 

@@ -3,7 +3,7 @@
 _equasis() {
     local context state state_descr line
     typeset -A opt_args
-    
+
     _arguments -C \
         '(--help -h)'{--help,-h}'[Show help message]' \
         '--username[Equasis username]:username:' \
@@ -13,7 +13,7 @@ _equasis() {
         '1: :_equasis_commands' \
         '*:: :->command_args' \
     && return 0
-    
+
     case $state in
         command_args)
             case $words[1] in
@@ -73,7 +73,7 @@ _equasis_fleet_args() {
 _equasis_output_formats() {
     local -a formats=(
         'table:Human-readable table format (default)'
-        'json:JSON format for programmatic use' 
+        'json:JSON format for programmatic use'
         'csv:Comma-separated values for spreadsheets'
     )
     _describe 'output formats' formats
