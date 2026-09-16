@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   lint:
-    name: Lint
+    name: Lint and type check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -29,6 +29,8 @@ jobs:
         run: ruff check .
       - name: Ruff format
         run: ruff format --check .
+      - name: Mypy
+        run: mypy
 
   test:
     name: Test (Python ${{ matrix.python-version }}, ${{ matrix.os }})

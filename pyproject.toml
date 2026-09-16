@@ -9,7 +9,7 @@ description = "Command-line access to Equasis maritime data: vessel profiles, PS
 readme = "README.md"
 requires-python = ">=3.10"
 license = "PolyForm-Noncommercial-1.0.0"
-license-files = ["LICENSE", "LICENSING.md"]
+license-files = ["LICENSE", "LICENSING.md", "NOTICE"]
 authors = [{ name = "rhinonix", email = "rhinonix.github.exclaim769@slmail.me" }]
 keywords = [
     "equasis",
@@ -62,7 +62,7 @@ Issues = "https://github.com/rhinonix/equasis-cli/issues"
 Changelog = "https://github.com/rhinonix/equasis-cli/blob/main/CHANGELOG.md"
 
 [project.scripts]
-equasis = "equasis_cli.main:main"
+equasis = "equasis_cli.cli:run"
 
 [tool.setuptools.dynamic]
 version = { attr = "equasis_cli._version.__version__" }
@@ -71,26 +71,16 @@ version = { attr = "equasis_cli._version.__version__" }
 where = ["src"]
 
 [tool.setuptools.package-data]
-equasis_cli = ["py.typed"]
+equasis_cli = ["py.typed", "enrichment/data/*.json"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py310"
 src = ["src", "tests"]
-# Legacy modules are excluded until they are rewritten in the core reliability
-# refactor; new and rewritten code must pass the full rule set.
-extend-exclude = [
-    "src/equasis_cli/banner.py",
-    "src/equasis_cli/client.py",
-    "src/equasis_cli/credentials.py",
-    "src/equasis_cli/formatter.py",
-    "src/equasis_cli/interactive.py",
-    "src/equasis_cli/main.py",
-    "src/equasis_cli/parser.py",
-    "src/equasis_cli/__init__.py",
-]
 
 [tool.ruff.lint]
+# Typographic quotes are normalized in shell input; the prompt uses a chevron.
+allowed-confusables = ["❯", "‘", "’", "“", "”"]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -114,10 +104,6 @@ strict = true
 warn_unreachable = true
 mypy_path = "src"
 files = ["src/equasis_cli"]
-
-[[tool.mypy.overrides]]
-module = ["bs4.*"]
-ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
