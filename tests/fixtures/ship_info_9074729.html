@@ -1,0 +1,9062 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+
+
+
+<title>Equasis - ShipInfo
+</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body onload="initOnglet()">
+<a aria-expanded="false" href="#collapse1" id="boutonInitOnglet">
+</a>
+<div id="body">
+<header class="banner">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse white" role="navigation">
+<div class="separator bleu-equasis"></div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-2 no-padding">
+
+<div class="navbar-header full-width">
+<button class="navbar-toggle" data-target="#equasis-menu-collapse" id="menu" onclick="toggleMenu();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<button class="navbar-toggle user" data-target="#equasis-user-collapse" id="user" onclick="toggleUser();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-user"></span></button>
+<a class="navbar-brand" href="HomePage?fs=ShipInfo"></a>
+</div>
+
+
+<div class="navbar-header full-width hidden-lg hidden-md hidden-sm no-padding">
+<div class="bleu-equasis no-padding">
+<div>
+<form action="../restricted/Search?fs=ShipInfo" class="navbar-form navbar-input-group" id="RechercheEnteteS" method="post" name="formSearchEnteteS" onsubmit="document.formSearchEnteteS.P_ENTREE_ENTETE_HIDDEN.value=document.formSearchEnteteS.P_ENTREE_ENTETE_S.value;">
+<input id="P_ENTREE_ENTETE_HIDDEN" name="P_ENTREE_ENTETE_HIDDEN" type="hidden" value=""/> <input name="P_PAGE" type="hidden" value="1"/> <input name="P_PAGE_COMP" type="hidden" value="1"/> <input name="P_PAGE_SHIP" type="hidden" value="1"/>
+<div class="input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="P_ENTREE_ENTETE_S" name="P_ENTREE_ENTETE_S" placeholder="IMO, Name, Company" type="text"/> <span class="input-group-btn">
+<button class="btn btn-default" type="submit">
+<i class="icon-search icon-sm"></i>
+</button>
+</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+<div class="hidden-lg hidden-md hidden-sm">
+<div class="collapse navbar-collapse hidden-lg hidden-md hidden-sm" id="equasis-user-collapse">
+<div class="navbar-right hidden-lg hidden-md hidden-sm">
+
+<div class="access-body">
+<h3>
+Welcome
+</h3>
+<div class="clearfix"></div>
+<form action="HomePage?fs=ShipInfo" method="post" name="formInfoUser" onsubmit="window.location.reload()">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="clearfix h15"></div>
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul class="no-margin">
+<li><a href="../public/HomePage?fs=ShipInfo&amp;P_ACTION=NEW_CONNECTION">
+Logout <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<a href="Registration?fs=ShipInfo"> My profile <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue
+<i class="icon-arrow-right icon-sm"></i>
+</a></li>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=Feedback"> Give your opinion <i class="icon-arrow-right icon-sm"></i></a></li>
+</ul>
+</div>
+</div>
+</form>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="collapse navbar-collapse" id="equasis-menu-collapse">
+<div class="col-sm-4 col-lg-3 navbar-right hidden-xs">
+<div class="table-cell cell-full text-right">
+
+<form action="../restricted/Search?fs=ShipInfo" class="navbar-form navbar-input-group" id="RechercheEntete" method="post" name="formSearchEntete" onsubmit="document.formSearchEntete.P_ENTREE_ENTETE_HIDDEN.value=document.formSearchEntete.P_ENTREE_ENTETE.value;">
+<input name="P_PAGE" type="hidden" value="1"/> <input name="P_PAGE_COMP" type="hidden" value="1"/> <input name="P_PAGE_SHIP" type="hidden" value="1"/>
+<div class="input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="P_ENTREE_ENTETE" name="P_ENTREE_ENTETE" placeholder="IMO, Name, Company" type="text"/> <span class="input-group-btn"> <input id="P_ENTREE_ENTETE_HIDDEN" name="P_ENTREE_ENTETE_HIDDEN" type="hidden" value=""/>
+<button class="btn btn-default" type="submit">
+<i class="icon-search icon-sm"></i>
+</button>
+</span>
+</div>
+</form>
+
+</div>
+<div class="table-cell">
+<ul class="nav">
+<li class="dropdown dropdown-arrow" id="user_menu_container">
+<a class="dropdown-toggle text-overflow text-left" href="#"> <span><i class="icon-user icon-md"></i></span>
+</a>
+<ul class="dropdown-menu user-menu panel panel-success no-border no-padding no-radius noclose">
+<li class="panel-body" id="guest-register">
+
+<form class="text-left" role="form">
+<div class="pull-left">
+<i class="icon-unlock icon-md"></i>
+</div>
+<div class="access-body">
+<h3>
+Welcome
+</h3>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="clearfix h20"></div>
+<h3 class="bleu-equasis">Test User</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul class="no-margin">
+<li><a href="../public/HomePage?fs=ShipInfo&amp;P_ACTION=NEW_CONNECTION">
+Logout <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<a href="Registration?fs=ShipInfo"> My profile <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<ul>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue <i class="icon-arrow-right icon-sm"></i>
+</a></li>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=Feedback"> Give your opinion <i class="icon-arrow-right icon-sm"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+</form> 
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-sm-6 col-lg-7 navbar-center">
+<ul class="nav navbar-nav text-left">
+
+<li>
+<a href="../public/HomePage?fs=ShipInfo"> Home <i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm">
+</i>
+</a>
+</li>
+
+
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/ShipSubcription?fs=ShipInfo" id="dropdownMenuMyEquasis">
+My Equasis <i class="icon-chevron-down icon-sm hidden-xs"></i>
+<i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenuMyEquasis" class="dropdown-menu">
+<li><a href="../restricted/ShipSubcription?fs=ShipInfo"><i class="icon-caret-right"></i> Ship sign up
+</a></li>
+<li><a href="../restricted/CompanySubcription?fs=ShipInfo"><i class="icon-caret-right"></i> Company sign up
+</a></li>
+<li><a href="../restricted/SurveyList?fs=ShipInfo"><i class="icon-caret-right"></i> Survey
+</a></li>
+</ul>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/About?fs=ShipInfo" id="dropdownMenu1">
+About Equasis <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/About?fs=ShipInfo&amp;P_ABOUT=MainConcern.html">
+<i class="icon-caret-right"></i> Overview
+</a></li>
+<li><a href="../public/About?fs=ShipInfo&amp;P_ABOUT=MoUText.html">
+<i class="icon-caret-right"></i> MOU text
+</a></li>
+<li><a href="../public/About?fs=ShipInfo&amp;P_ABOUT=Org.html">
+<i class="icon-caret-right"></i> Organisation
+</a></li>
+<li><a href="../public/DataUpdatePublic?fs=ShipInfo&amp;P_PAGE=1">
+<i class="icon-caret-right"></i> Data update
+</a></li>
+<li><a href="../public/About?fs=ShipInfo&amp;P_ABOUT=Providers.html">
+<i class="icon-caret-right"></i> Data-Providers
+</a></li>
+<li><a href="../public/About?fs=ShipInfo&amp;P_ABOUT=Events.html">
+<i class="icon-caret-right"></i> Events
+</a></li>
+<li><a href="../restricted/FlagPerf?fs=ShipInfo">
+<i class="icon-caret-right"></i> Flag Perf.
+</a></li>
+<li><a href="../restricted/ROPerf?fs=ShipInfo">
+<i class="icon-caret-right"></i> RO Perf.
+</a></li>
+<li><a href="../restricted/RatConv?fs=ShipInfo"> <i class="icon-caret-right"></i> IMO conventions
+</a></li>
+</ul>
+
+
+<li>
+<a href="../public/News?fs=ShipInfo&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/Stat?fs=ShipInfo" id="dropdownMenuStatics">
+Statistics <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenuStatics" class="dropdown-menu">
+<li>
+<a href="../restricted/Stat?fs=ShipInfo">
+<i class="icon-caret-right"></i> Annual Reports
+</a>
+</li>
+<li>
+<a href="../restricted/DashBoard?fs=ShipInfo">
+<i class="icon-caret-right"></i> DashBoards
+</a>
+</li>
+</ul>
+</li>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/Support?fs=ShipInfo" id="dropdownMenu1">
+Support <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/Support?fs=ShipInfo&amp;P_SUPPORT=Help.html">
+<i class="icon-caret-right"></i> Help
+</a></li>
+<li><a href="../public/Support?fs=ShipInfo&amp;P_SUPPORT=Faq.html">
+<i class="icon-caret-right"></i> Faq
+</a></li>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+<i class="icon-caret-right"></i> Report an Issue
+</a></li>
+<li><a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=Feedback">
+<i class="icon-caret-right"></i> Give your opinion
+</a></li>
+</ul>
+
+</li></li></li></ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="remove-spaces-alert" id="cookiesDisabled">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">You don't have Cookies enabled in your browser.<br/>Cookies help us deliver our services. By using our services, you agree to our use of Cookies.
+<br/>The Equasis Website use Cookies as a part of its core functionality, and if you browse this website without Cookies enabled then you won't have the full experience that you normally would.<br/>This website may not work properly.</strong></p>
+</div>
+</div>
+</div>
+<div class="remove-spaces-alert" id="browser">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">Your browser is not supported by Equasis Website.
+</strong></p>
+</div>
+</div>
+</div>
+
+<div class="hidden-xs" id="breadcrumb">
+<ul id="breadcrumb">
+<li><a href="HomePage?fs=ShipInfo" id="first"><i class="icon-home"></i></a></li>
+<li id="current">Ship info</li>
+</ul>
+</div>
+<section class="hidden-lg hidden-sm hidden-md" id="title">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div>
+<p>
+<span>
+<a class="social" href="null"> <i class="icon-arrow-left icon-md"></i> Back to Home</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<section class="navbar-details">
+<div class="container-fluid font-size-sm">
+<div class="row gris-bleu-traffic">
+
+<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-12 col-xs-12 no-padding">
+<form action="ShipSubcription?fs=ShipInfo">
+<button class="btn btn-default btn-normal bleu-equasis btn-results" type="submit">
+Go to My Equasis
+<i class="icon-arrow-right icon-sm pull"></i>
+</button>
+</form>
+</div>
+<div class="col-lg-8 col-lg-pull-4 col-md-8 col-md-pull-4 col-sm-12 col-xs-12 no-padding">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<h3>Ship info </h3>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="pull-right">
+<p>
+
+
+<a onclick="document.formOngletShip.action ='ShipInfo?fs=ShipInfo'; document.formOngletShip.event.value='AddShip';document.formOngletShip.submit();">
+<i class="icon-star-empty icon-sm"></i>
+</a>
+<a onclick="javascript:window.open('../restricted/ShipFop?fs=ShipInfo&amp;IMO=9074729')">
+<i class="icon-download-alt icon-sm"></i>
+</a>
+<a class="hiddem-sm hidden-xs" href="#" onclick="imprimerPage()">
+<i class="icon-print icon-sm"></i>
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="row orange-equasis">
+<div class="separator orange-equasis"></div>
+</div>
+</div>
+</section>
+
+<section class="gris-clair-login">
+<div class="container-fluid font-size-sm info-details no-padding white">
+<div class="row-fluid">
+
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div class="row white">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+<h4 class="color-gris-bleu-copyright">
+<b>KAVITA</b>
+- IMO n° <b>9074729</b>
+</h4>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-lg hidden-md">
+<div class="access-item access-box white">
+<div class="access-body">
+<ul class="list-group borderless">
+<li class="list-group-item">
+<a class="a-inverse" href="https://www.vesseltracker.com/en/Ships/-9074729.html" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>
+See picture on VesselTracker
+</b>
+</a>
+</li>
+<li class="list-group-item">
+<a class="a-inverse" href="http://www.marinetraffic.com/en/photos/of/ships/imo:9074729" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>See picture on MarineTraffic </b>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="row white">
+<div class="col-sm-12 col-xs-12 hidden-lg hidden-md no-padding">
+<div class="separator orange-equasis"></div>
+<div class="clearfix h15"></div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<p>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Flag </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<img src="../Static/img/flags/PLW.png"/>
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(Palau (Republic of))
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Call Sign </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+T8A2441
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Gross tonnage </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+15899
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(since 01/02/2018)
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>DWT </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+26389
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Type of ship </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+General Cargo Ship
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(during 1995)
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Year of build </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+1995
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+<b>Status </b>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+Broken Up
+</div>
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md"></div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+(since 25/09/2025)
+</div>
+</div>
+<br/>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<p class="badge gris-bleu-copyright badge-notification">
+Last update of ship particulars
+2026-05-26
+</p>
+</div>
+</div>
+</p></div>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<div class="access-item access-box white">
+<div class="access-body">
+<ul class="list-group borderless">
+<li class="list-group-item">
+<a class="a-inverse" href="https://www.vesseltracker.com/en/Ships/-9074729.html" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>
+See picture on VesselTracker
+</b>
+</a>
+</li>
+<li class="list-group-item">
+<a class="a-inverse" href="http://www.marinetraffic.com/en/photos/of/ships/imo:9074729" target="_blank">
+<span class="badge">
+<i class="icon-external-link icon-sm"></i>
+</span>
+<b>See picture on MarineTraffic </b>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="clearfix h25"></div>
+<section class="grey_white_boxes">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="row">
+<form method="post" name="formOngletShip">
+<input name="P_IMO" type="hidden" value="9074729"/>
+<input name="P_COMP" type="hidden"/>
+<input name="event" type="hidden" value=""/>
+<input name="P_INSP" type="hidden" value=""/>
+</form>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-right-ship">
+<button class="btn btn-default btn-normal btn-results padding-right-ship btn-inactive" type="button">
+Ship info
+</button>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-right-ship padding-left-company">
+<button class="btn btn-default btn-normal orange-equasis btn-results active padding-right-ship padding-left-company" onclick="document.formOngletShip.action ='ShipInspection?fs=ShipInfo';document.formOngletShip.submit();" type="button">
+Inspections (86)
+</button>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-left-company">
+<button class="btn btn-default btn-normal orange-equasis btn-results active padding-right-ship padding-left-company" onclick="document.formOngletShip.action ='ShipHistory?fs=ShipInfo';document.formOngletShip.submit();" type="button">
+Ship History
+</button>
+</div>
+</div>
+<div class="clearfix h10"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<div class="container-fluid font-size-sm">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Ship Information : Key Indicators','../Static/MOA/Help/ShipInfo_KeyIndicators.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse1">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-6">
+<div class="row">
+<h3>Overview</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse1">
+<br/>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<b>0.0%</b> Of inspections having led to a detention in last 36 months
+</div>
+<div class="clearfix h25"></div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 no-padding">
+<p class="">
+<b>Flag performance</b>
+</p>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="badge bleu-equasis font-size-md">
+<div class="inline-flex">
+<p>Paris MOU</p>
+</div>
+<div class="inline-flex">
+<div class="round-15 round-border black"></div>
+</div>
+<div class="inline-flex">
+<p>Black</p>
+</div>
+</div>
+</div>
+<div class="clearfix h45 hidden-lg hidden-md"></div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="badge bleu-equasis font-size-md">
+<div class="inline-flex">
+<p>Tokyo MOU</p>
+</div>
+<div class="inline-flex">
+<div class="round-15 round-border black"></div>
+</div>
+<div class="inline-flex">
+<p>Black</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<p>
+<b>Flag targeting</b>
+</p>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="badge bleu-equasis font-size-md">
+<div class="inline-flex">
+<p>USCG: not targeted </p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<p>
+<b>
+<a href="../restricted/ROPerf?fs=ShipInfo">
+RO Performances
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</b>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Ship Information : Management','../Static/MOA/Help/ShipInfo_Management.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse3">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-6">
+<div class="row">
+<h3>Management detail</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse3">
+<br/>
+<div class="container-fluid font-size-sm no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<div class="row">
+<div class="cadre col-sm-12 col-xs-12">
+<div class="formulaire row hidden-xs hidden-sm">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-sub-row-md">
+<div class="clearfix visible-xs-block visible-sm-block"></div>
+<div class="row">
+</div>
+<div class="row">
+<div class="hidden-xs hidden-sm col-md-12 col-lg-12">
+<div class="row">
+<form name="formShipToComp">
+<input name="P_COMP" type="hidden"/>
+<input name="P_IMO" type="hidden" value="9074729"/>
+<table class="tableLS table table-striped table-responsive">
+<thead>
+<tr>
+<th data-field="IMO number">
+IMO number
+</th>
+<th data-field="Role">
+Role
+</th>
+<th data-field="Name of company">
+Name of company
+</th>
+<th data-field="Address">
+Address
+</th>
+<th data-field="Date of effect">
+Date of effect
+</th>
+<th data-field="Details">
+Details
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a onclick="document.formShipToComp.P_COMP.value='6229206';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6229206
+</a>
+</td>
+<td>
+ISM Manager
+</td>
+<td>
+COSTALINA SHIP MANAGEMENT FZC
+</td>
+<td>
+Office 614, Bock A1, Ajman Free Zone, PO Box 40300, Ajman, United Arab Emirates.
+</td>
+<td>
+since 09/04/2024
+</td>
+<td class="icon">
+<a onclick="document.formShipToComp.P_COMP.value='6229206';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6277131
+</a>
+</td>
+<td>
+Ship manager/Commercial manager
+</td>
+<td>
+CASSINI SHIP OWNING CO
+</td>
+<td>
+Trust Company Complex, Ajeltake Road, Ajeltake, Majuro MH 96960, Marshall Islands.
+</td>
+<td>
+since 01/02/2022
+</td>
+<td class="icon">
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6277131
+</a>
+</td>
+<td>
+Registered owner
+</td>
+<td>
+CASSINI SHIP OWNING CO
+</td>
+<td>
+Trust Company Complex, Ajeltake Road, Ajeltake, Majuro MH 96960, Marshall Islands.
+</td>
+<td>
+since 01/02/2022
+</td>
+<td class="icon">
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden-xs hidden-sm col-sm-12">
+<div class="row">
+<br/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+<div class="row">
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>COSTALINA SHIP MANAGEMENT FZC</strong>
+<a onclick="document.formShipToComp.P_COMP.value='6229206';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+IMO number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+<a onclick="document.formShipToComp.P_COMP.value='6229206';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6229206
+</a>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Role
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+ISM Manager
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Address
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Office 614, Bock A1, Ajman Free Zone, PO Box 40300, Ajman, United Arab Emirates.
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Date of effect
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+since 09/04/2024
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>CASSINI SHIP OWNING CO</strong>
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+IMO number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6277131
+</a>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Role
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Ship manager/Commercial manager
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Address
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Trust Company Complex, Ajeltake Road, Ajeltake, Majuro MH 96960, Marshall Islands.
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Date of effect
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+since 01/02/2022
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>CASSINI SHIP OWNING CO</strong>
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+<i class="icon-arrow-right icon-sm"></i>
+</a>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+IMO number
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+<a onclick="document.formShipToComp.P_COMP.value='6277131';document.formShipToComp.action='CompanyInfo?fs=ShipInfo';document.formShipToComp.submit();">
+6277131
+</a>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Role
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Registered owner
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Address
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Trust Company Complex, Ajeltake Road, Ajeltake, Majuro MH 96960, Marshall Islands.
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Date of effect
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+since 01/02/2022
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="container-fluid font-size-sm">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Ship Information : Classification','../Static/MOA/Help/ShipInfo_Class.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse4">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-6">
+<div class="row">
+<h3>Classification</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse4">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="row white padding-sub-row">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h5>Status
+</h5>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<div class="pull-left">
+<div class="round-list orange-equasis"></div>
+</div>
+<p>International Register of Shipping (IS)</p>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+<p>
+<span class="badge Delivered font-size-md">Delivered</span>
+</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p>during 09/2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<div class="pull-left">
+<div class="round-list orange-equasis"></div>
+</div>
+<p>Registro Italiano Navale (IACS)</p>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+<p>
+<span class="badge Withdrawn font-size-md">Withdrawn</span>
+</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p>since 31/05/2024</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p><i>Non-compliance with conditions of class / recommendations</i></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<div class="pull-left">
+<div class="round-list orange-equasis"></div>
+</div>
+<p>Bureau Veritas (IACS)</p>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+<p>
+<span class="badge Suspended font-size-md">Suspended</span>
+</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p>since 20/10/2015</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p><i>Survey overdue</i></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<div class="pull-left">
+<div class="round-list orange-equasis"></div>
+</div>
+<p>Nippon Kaiji Kyokai (IACS)</p>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+<p>
+<span class="badge Withdrawn font-size-md">Withdrawn</span>
+</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p>since 22/07/2008</p>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p><i>Transfer of class to another IACS member</i></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h5>
+Surveys
+</h5>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<p>
+Registro Italiano Navale (IACS)
+</p>
+</div>
+<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+<p>
+Last renewal survey
+<span class="badge gris-clair-login font-size-md">
+2022-02-18
+</span>
+</p>
+</div>
+<div class="col-lg-6 col-md-5 col-sm-12 col-xs-12">
+<p>
+Next renewal survey
+<span class="badge gris-clair-login font-size-md">
+2026-10-28
+</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+<a href="#modal-help" onclick="helpModal('Geographical Information','../Static/MOA/Help/Geographical_Information.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse7">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<h3>Geographical Information</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse7">
+<br/>
+<div class="container-fluid font-size-sm no-padding">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<div class="row">
+<div class="cadre col-sm-12 col-xs-12">
+<div class="formulaire row hidden-xs hidden-sm">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-sub-row-md">
+<div class="clearfix visible-xs-block visible-sm-block"></div>
+<div class="row">
+</div>
+<div class="row">
+<div class="hidden-xs hidden-sm col-md-12 col-lg-12">
+<div class="row">
+<table class="tableLS table table-striped table-responsive">
+<thead>
+<tr>
+<th data-field="Date of record">
+Date of record
+</th>
+<th data-field="Area where the ship was seen">
+Area where the ship was seen
+</th>
+<th data-field="Source">
+Source
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+September 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2025
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2024
+</td>
+<td>
+East Africa, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+September 2024
+</td>
+<td>
+East Africa, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2024
+</td>
+<td>
+East Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+August 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2024
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2023
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+October 2022
+</td>
+<td>
+South Asia, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2022
+</td>
+<td>
+South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+September 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2022
+</td>
+<td>
+Mediterranean Sea, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2022
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+February 2022
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2022
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2022
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+December 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2021
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2020
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2020
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2020
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2020
+</td>
+<td>
+Indian Ocean, Java Sea, Singapore Strait
+</td>
+<td>
+AXS Marine
+</td>
+</tr>
+<tr>
+<td>
+May 2020
+</td>
+<td>
+South Asia, South East Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2020
+</td>
+<td>
+South Asia, South East Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+April 2020
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2020
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+March 2020
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2020
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2020
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+December 2019
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2019
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2019
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2019
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+September 2019
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2019
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+August 2019
+</td>
+<td>
+East Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2019
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2019
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+June 2019
+</td>
+<td>
+South America East Coast, West Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2019
+</td>
+<td>
+South America East Coast
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+May 2019
+</td>
+<td>
+West Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2019
+</td>
+<td>
+West Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2019
+</td>
+<td>
+West Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+March 2019
+</td>
+<td>
+South Asia, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2019
+</td>
+<td>
+South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+February 2019
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2019
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+August 2018
+</td>
+<td>
+East Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+July 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2018
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+May 2018
+</td>
+<td>
+East Africa, South America East Coast, South Asia, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2018
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+April 2018
+</td>
+<td>
+South America East Coast, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2018
+</td>
+<td>
+South America East Coast, South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+February 2018
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2018
+</td>
+<td>
+East Africa, South_Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+January 2018
+</td>
+<td>
+South America East Coast, West Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2018
+</td>
+<td>
+South America East Coast
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+December 2017
+</td>
+<td>
+East Africa, South_Africa, West Africa
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2017
+</td>
+<td>
+South_Africa, West Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+November 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+August 2017
+</td>
+<td>
+Singapore Strait
+</td>
+<td>
+AXS Marine
+</td>
+</tr>
+<tr>
+<td>
+August 2017
+</td>
+<td>
+South East Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2017
+</td>
+<td>
+Malacca Strait, Singapore Strait
+</td>
+<td>
+AXS Marine
+</td>
+</tr>
+<tr>
+<td>
+July 2017
+</td>
+<td>
+South Asia, South East Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2017
+</td>
+<td>
+South East Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+June 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2017
+</td>
+<td>
+Mediterranean Sea, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+March 2017
+</td>
+<td>
+Mediterranean Sea, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2017
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+February 2017
+</td>
+<td>
+Mediterranean Sea, South Asia
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2017
+</td>
+<td>
+South Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+January 2017
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2016
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2016
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2016
+</td>
+<td>
+Mediterranean Sea
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2016
+</td>
+<td>
+Mediterranean Sea, North Europe, West Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+September 2016
+</td>
+<td>
+Mediterranean Sea, West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+August 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+May 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+March 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+February 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+January 2016
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+December 2015
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+November 2015
+</td>
+<td>
+North Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2015
+</td>
+<td>
+North America East Coast, North Europe, West Europe
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+October 2015
+</td>
+<td>
+North Europe, West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+September 2015
+</td>
+<td>
+North America East Coast
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+August 2015
+</td>
+<td>
+North America East Coast
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+July 2015
+</td>
+<td>
+North America East Coast
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2015
+</td>
+<td>
+Middle America and Gulf of Mexico, North America East Coast
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+June 2015
+</td>
+<td>
+North America East Coast
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+May 2015
+</td>
+<td>
+Middle America and Gulf of Mexico
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2015
+</td>
+<td>
+Middle America and Gulf of Mexico
+</td>
+<td>
+MarineTraffic
+</td>
+</tr>
+<tr>
+<td>
+April 2015
+</td>
+<td>
+Middle America and Gulf of Mexico
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+March 2015
+</td>
+<td>
+Mediterranean Sea, West Africa
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+October 2014
+</td>
+<td>
+Singapore Strait, South China Sea
+</td>
+<td>
+AXS Marine
+</td>
+</tr>
+<tr>
+<td>
+October 2014
+</td>
+<td>
+East Asia, South Asia, South East Asia
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+September 2014
+</td>
+<td>
+Middle America and Gulf of Mexico, North America West Coast
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+July 2014
+</td>
+<td>
+South America West Coast
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+June 2014
+</td>
+<td>
+Middle America and Gulf of Mexico
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+May 2014
+</td>
+<td>
+West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+April 2014
+</td>
+<td>
+North Europe, West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+March 2014
+</td>
+<td>
+Middle America and Gulf of Mexico
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+February 2014
+</td>
+<td>
+West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+January 2014
+</td>
+<td>
+North Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+December 2013
+</td>
+<td>
+West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+November 2013
+</td>
+<td>
+Mediterranean Sea, West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+<tr>
+<td>
+October 2013
+</td>
+<td>
+North Europe, West Europe
+</td>
+<td>
+VesselTracker
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden-xs hidden-sm col-sm-12">
+<div class="row">
+<br/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+<div class="row">
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2025</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2024</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2023</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2022</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2021</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Indian Ocean, Java Sea, Singapore Strait
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+AXS Marine
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia, South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia, South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2020</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast, West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2019</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South America East Coast, South Asia, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast, West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2018</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Africa, South_Africa, West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South_Africa, West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Singapore Strait
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+AXS Marine
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Malacca Strait, Singapore Strait
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+AXS Marine
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia, South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2017</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, North Europe, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2016</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North America East Coast, North Europe, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>August 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico, North America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North America East Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+MarineTraffic
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2015</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, West Africa
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Singapore Strait, South China Sea
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+AXS Marine
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+East Asia, South Asia, South East Asia
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>September 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico, North America West Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>July 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+South America West Coast
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>June 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>May 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>April 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>March 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Middle America and Gulf of Mexico
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>February 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>January 2014</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>December 2013</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>November 2013</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+Mediterranean Sea, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+<div class="blocLSMobile col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12">
+<div class="enteteBlocLSMobile row">
+<div class="col-xs-12 col-sm-12">
+<div class="row">
+<h3>
+<strong>October 2013</strong>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Where
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+North Europe, West Europe
+</div>
+</div>
+<div class="donnee col-xs-4 col-sm-4">
+<div class="row">
+Source
+</div>
+</div>
+<div class="valeur col-xs-8 col-sm-8">
+<div class="row">
+VesselTracker
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="cadre col-xs-12">
+<div class="formulaire row">
+<div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+</div>
+<div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+<a aria-expanded="false" class="boutonCollapse collapsed" href="#collapse9">
+<div class="padding-15">
+<div class="row">
+<div class="vcenter col-xs-10 col-sm-11">
+<div class="row">
+<div class="cadre2">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<div class="vcenter col-xs-12 col-sm-7">
+<div class="row">
+<h3>Convention, Association and Manning</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="vcenter col-xs-2 col-sm-1">
+<div class="row">
+
+</div>
+</div>
+</div>
+</div>
+</a></div>
+<div class="collapse" id="collapse9">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 white padding-sub-row no-padding">
+<div class="access-item">
+<div class="access-body">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+<table class="table borderless table-valign-middle">
+<tbody>
+<tr>
+<td class="col-lg-2 col-md-2 col-sm-4 col-xs-4 table-centered">
+
+</td>
+<td class="col-lg-10 col-md-10 col-sm-8 col-xs-8"><p>
+<i class="icon-arrow-right external-link icon-sm">
+</i>
+<b>
+<a onclick="document.formOngletShip.action ='ShipCertification?fs=ShipInfo';document.formOngletShip.submit();">
+IMO Conventions signed by the state
+</a>
+</b>
+</p></td>
+</tr>
+<tr>
+<td class="col-lg-2 col-md-2 col-sm-4 col-xs-4 table-centered">
+
+</td>
+<td class="col-lg-10 col-md-10 col-sm-8 col-xs-8"><p>
+<i class="icon-external-link external-link icon-sm"></i>
+<a href="http://www.ilo.org/dyn/normlex/en/f?p=1000:80021:0::NO:80021:P80021_ISO_CODE:PLW" target="_blank">
+International Labour Organization
+</a>
+<a href="#modal-help" onclick="helpModal('Ship Inspection : ILO','../Static/MOA/Help/ShipInsp_ILO.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</p></td>
+</tr>
+<tr>
+<td class="col-lg-2 col-md-2 col-sm-4 col-xs-4 table-centered">
+
+</td>
+<td class="col-lg-10 col-md-10 col-sm-8 col-xs-8"><p>
+<i class="icon-external-link external-link icon-sm"></i>
+<a href="http://seafarers.oxfordwebapps.com/#/app/vessels/search/results?q=9074729" target="_blank">
+International Transport Worker's Federation
+</a>
+<a href="#modal-help" onclick="helpModal('Ship Inspection : ITF','../Static/MOA/Help/ShipInsp_ITF.html');" type="button"><i class="glyphicon glyphicon-question-sign"></i></a>
+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="footer">
+<section class="separator orange-equasis" id="news-separator"></section>
+<section class="white" id="contributors">
+<div class="container-fluid col-centered">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<h3>Equasis's contributors</h3>
+<div class="col-md-offset-1">
+<div class="row">
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.tc.gc.ca/eng/marinesafety/oep-inspection-menu-770.htm" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.emsa.europa.eu/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mer.gouv.fr/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mofa.go.jp/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.korea.net/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.norway.no/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.fomento.gob.es/MFOM/LANG_CASTELLANO/DIRECCIONES_GENERALES/MARINA_MERCANTE/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.gov.uk/government/organisations/maritime-and-coastguard-agency" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.dco.uscg.mil/Our-Organization/Assistant-Commandant-for-Prevention-Policy-CG-5P/" target="_blank"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="gris-bleu-traffic" id="sitemap">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+
+<div class="hidden-lg hidden-md col-sm-12 col-xs-12 social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md">
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=ShipInfo&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+Contact us
+</a>
+</p>
+</div>
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=ShipInfo&amp;P_MOA=help">
+<i class="icon-info icon-md"></i>
+Help
+</a>
+</p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+</p>
+</div>
+<div class="row hidden-lg hidden-md">
+<p class="pull-right">
+<a class="social" href="Moa?fs=ShipInfo&amp;P_MOA=faq">
+<i class="icon-question icon-md"></i>
+FAQ
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<h3>Site map</h3>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../public/HomePage?fs=ShipInfo">
+Home
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInfo">
+About Equasis
+</a>
+</li>
+<li>
+<form action="../restricted/Search?fs=ShipInfo" method="post" name="lienSearchFooter">
+<input name="lienFooter" type="hidden" value="true"/>
+</form>
+<a href="#" onclick="document.lienSearchFooter.submit();">
+Search
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInfo&amp;P_ABOUT=Providers.html">
+Data providers
+</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../restricted/Stat?fs=ShipInfo">
+Annual Reports</a>
+</li>
+<li>
+<a href="../public/News?fs=ShipInfo&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+<li>
+<a href="../restricted/ShipSubcription?fs=ShipInfo">
+My Equasis
+</a>
+</li>
+<li>
+<a href="../public/About?fs=ShipInfo&amp;P_ABOUT=EquasisPolicy.html">
+Equasis policy
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 hidden-sm hidden-xs social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="clearfix h30 hidden-sm hidden-xs"></div>
+<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+<span class="no-style hidden-sm hidden-xs">
+or contact us
+<a class="social" href="Moa?fs=ShipInfo&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer class="gris-bleu-copyright" id="footer">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<p>© Copyright 2000-2026; Version : Prod v3.7.1 a; Developed and hosted by French Ministry in charge of the Sea and Fisheries -DGAMPA/SDNUM-Saint-Malo</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<ul class="pull-right">
+<li>
+<a href="../public/Support?fs=ShipInfo&amp;P_SUPPORT=Help.html">
+Help
+</a>
+</li>
+<li>
+<a href="../public/Support?fs=ShipInfo&amp;P_SUPPORT=Faq.html">
+FAQ
+</a>
+</li>
+<li>
+<a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=ReportAnError&amp;P_ACTION=NEW_QUERY">
+Report an Issue
+</a>
+</li>
+<li>
+<a href="../authen/Support?fs=ShipInfo&amp;P_SUPPORT=Feedback">
+Give your opinion
+</a>
+</li>
+<li><a class="gototop" href="#" id="gototop"><i class="icon-chevron-up"></i></a></li>
+
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+
+<div aria-labelledby="mymodallabel" class="modal fade" id="modal-help" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header bleu-equasis">
+<button class="close" data-dismiss="modal" type="button">
+<i class="icon-remove-sign"></i>
+</button>
+<h1>
+<i class="icon-info-sign"></i> <span id="modal-title-help"> </span>
+</h1>
+</div>
+<div class="modal-body" id="modal-body-help"></div>
+<div class="modal-footer">
+<button class="btn btn-md gris-bleu-copyright pull-left" data-dismiss="modal" type="button">Close</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
+

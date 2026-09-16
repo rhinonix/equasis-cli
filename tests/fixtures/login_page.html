@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+
+
+
+<title>Equasis - HomePage
+</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body onload="initOnglet()">
+<a aria-expanded="false" href="#collapse1" id="boutonInitOnglet">
+</a>
+<div id="body">
+<header class="banner">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse white" role="navigation">
+<div class="separator bleu-equasis"></div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-2 no-padding">
+
+<div class="navbar-header full-width">
+<button class="navbar-toggle" data-target="#equasis-menu-collapse" id="menu" onclick="toggleMenu();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<button class="navbar-toggle user" data-target="#equasis-user-collapse" id="user" onclick="toggleUser();" type="button">
+<span class="sr-only">Toggle navigation</span> <span class="icon-user"></span></button>
+<a class="navbar-brand" href="HomePage?fs=HomePage"></a>
+</div>
+
+</div>
+<div class="hidden-lg hidden-md hidden-sm">
+<div class="collapse navbar-collapse hidden-lg hidden-md hidden-sm" id="equasis-user-collapse">
+<div class="navbar-right hidden-lg hidden-md hidden-sm">
+<div class="access-body">
+<h3>
+Access
+</h3>
+<div class="clearfix"></div>
+<form action="../authen/HomePage?fs=HomePage" method="post" name="formLoginMobile" onsubmit="window.location.reload()">
+
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="form-group">
+<input autocomplete="off" class="form-control" maxlength="320" name="j_email" placeholder="E-mail" tabindex="1" type="text"/>
+<div class="clearfix h20"></div>
+<div class="form-group input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="mobile-password" maxlength="50" name="j_password" placeholder="Password" type="password" value=""/>
+<span class="input-group-addon eye-cliquable" id="spanToggleMobilePassword">
+<i class="glyphicon glyphicon-eye-open" id="toggleMobilePassword"></i>
+</span>
+<span></span>
+</div>
+<div class="clearfix h20"></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<a href="../public/LostPassword?fs=HomePage"> Lost password <i class="icon-arrow-right icon-sm"></i></a>
+<div class="hidden-lg hidden-md">
+<a href="../public/ConditionsRegistration?fs=HomePage">Registration <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<button class="btn btn-default pull-right btn-sm gris-bleu-copyright" name="submit" type="submit">
+Login
+</button>
+</div>
+</div>
+
+</form>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="collapse navbar-collapse" id="equasis-menu-collapse">
+<div class="col-sm-4 col-lg-3 navbar-right hidden-xs">
+<div class="table-cell cell-full text-right"></div>
+<div class="table-cell">
+<ul class="nav">
+<li class="dropdown dropdown-arrow" id="user_menu_container">
+<a class="dropdown-toggle text-overflow text-left" href="#"> <span><i class="icon-user icon-md"></i></span>
+</a>
+<ul class="dropdown-menu user-menu panel panel-success no-border no-padding no-radius noclose">
+<li class="panel-body">
+
+<form action="../authen/HomePage?fs=HomePage" method="post" name="formLogin" onsubmit="window.location.reload()">
+<div class="pull-left">
+<i class="icon-lock icon-md"></i>
+</div>
+<div class="access-body">
+<h3>
+Access
+</h3>
+<div class="clearfix"></div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="form-group">
+<input autocomplete="off" class="form-control" maxlength="320" name="j_email" placeholder="E-mail" tabindex="1" type="text"/>
+<div class="clearfix h20"></div>
+<div class="form-group input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="entete-password" maxlength="50" name="j_password" placeholder="Password" tabindex="2" type="password" value=""/>
+<span class="input-group-addon eye-cliquable" id="spanToggleEntetePassword">
+<i class="glyphicon glyphicon-eye-open" id="toggleEntetePassword"></i>
+</span>
+<span></span>
+</div>
+<div class="clearfix h20"></div>
+</div>
+</div>
+</div>
+<div class="row margin-bottom-10">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<a href="../public/LostPassword?fs=HomePage"> Lost password <i class="icon-arrow-right icon-sm"> </i></a>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<button class="pull-right btn btn-sm gris-bleu-copyright" name="submit" type="submit">
+Login
+</button>
+</div>
+</div>
+<div class="row hidden-lg hidden-md">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<a href="../public/ConditionsRegistration?fs=HomePage">
+Registration <i class="icon-arrow-right icon-sm"></i>
+</a>
+</div>
+</div>
+</div>
+</form> 
+</li>
+<li class="panel-heading" id="guest-register">
+<div>
+<form action="../public/ConditionsRegistration?fs=HomePage" method="post" name="form">
+<span>First time visiting ?</span>
+<button class="pull-right btn btn-sm gris-bleu-copyright" type="submit">
+Register
+</button>
+</form>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-sm-6 col-lg-7 navbar-center">
+<ul class="nav navbar-nav text-left">
+
+<li class="active">
+<a href="../public/HomePage?fs=HomePage"> Home <i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm">
+</i>
+</a>
+</li>
+
+
+
+
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/About?fs=HomePage" id="dropdownMenu1">
+About Equasis <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/About?fs=HomePage&amp;P_ABOUT=MainConcern.html">
+<i class="icon-caret-right"></i> Overview
+</a></li>
+<li><a href="../public/About?fs=HomePage&amp;P_ABOUT=MoUText.html">
+<i class="icon-caret-right"></i> MOU text
+</a></li>
+<li><a href="../public/About?fs=HomePage&amp;P_ABOUT=Org.html">
+<i class="icon-caret-right"></i> Organisation
+</a></li>
+<li><a href="../public/DataUpdatePublic?fs=HomePage&amp;P_PAGE=1">
+<i class="icon-caret-right"></i> Data update
+</a></li>
+<li><a href="../public/About?fs=HomePage&amp;P_ABOUT=Providers.html">
+<i class="icon-caret-right"></i> Data-Providers
+</a></li>
+<li><a href="../public/About?fs=HomePage&amp;P_ABOUT=Events.html">
+<i class="icon-caret-right"></i> Events
+</a></li>
+<li><a href="../public/RatConv?fs=HomePage"> <i class="icon-caret-right"></i> IMO conventions
+</a></li>
+</ul>
+
+
+<li>
+<a href="../public/News?fs=HomePage&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+
+
+<li>
+</li>
+
+
+<li>
+<a aria-expanded="true" aria-haspopup="true" href="../restricted/Support?fs=HomePage" id="dropdownMenu1">
+Support <i class="icon-chevron-down icon-sm hidden-xs"></i><i class="icon-arrow-right icon-sm pull-right hidden-lg hidden-md hidden-sm"></i>
+</a>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+<li><a href="../public/Support?fs=HomePage&amp;P_SUPPORT=Help.html">
+<i class="icon-caret-right"></i> Help
+</a></li>
+<li><a href="../public/Support?fs=HomePage&amp;P_SUPPORT=Faq.html">
+<i class="icon-caret-right"></i> Faq
+</a></li>
+</ul>
+
+</li></li></ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="remove-spaces-alert" id="cookiesDisabled">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">You don't have Cookies enabled in your browser.<br/>Cookies help us deliver our services. By using our services, you agree to our use of Cookies.
+<br/>The Equasis Website use Cookies as a part of its core functionality, and if you browse this website without Cookies enabled then you won't have the full experience that you normally would.<br/>This website may not work properly.</strong></p>
+</div>
+</div>
+</div>
+<div class="remove-spaces-alert" id="browser">
+<div class="alert alert-danger text-left browser-outdated">
+<div class="table-cell align-top">
+<span class="fa-stack font-200">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-exclamation-triangle fa-stack-1x"></i>
+</span>
+</div>
+<div class="table-cell align-top full-width center-block">
+<p class="no-margin"><strong class="font-120 center-block">Your browser is not supported by Equasis Website.
+</strong></p>
+</div>
+</div>
+</div>
+
+<section class="remove-spaces hidden-lg"></section>
+
+
+<button href="#warning" id="error-modal"></button>
+
+<div aria-labelledby="myModalLabel" class="modal fade" id="warning" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header modal-header-warning">
+<button class="close" data-dismiss="modal" type="button"></button>
+<h1>
+<i class="glyphicon glyphicon-ban-circle"></i> Information
+</h1>
+</div>
+<div class="modal-body">
+<p>Your session has expired, please try to login again</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-md gris-bleu-copyright pull-left" data-dismiss="modal" type="button">Close</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<section class="remove-spaces hidden-sm hidden-md hidden-lg"></section>
+<section class="equasis_blue_boxes bleu-equasis" id="news">
+<div class="container-fluid">
+<div class="row-fluid">
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 about-box no-padding">
+<div class="news-item">
+<div class="news-body">
+<h3 class="orange-equasis">
+Welcome to Equasis, a public site promoting maritime safety and quality</h3>
+<div class="hidden-sm hidden-xs">
+Equasis is a tool aimed at reducing substandard shipping <br/>- Equasis provides safety related information on ships and companies <br/>- Its services are free of any charge <br/>- You only need to register as a user <br/>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+<section class="no-margin" id="main-slider">
+<div class="carousel slide wet-asphalt">
+<ol class="carousel-indicators">
+<li class="active" data-slide-to="0" data-target="#main-slider"></li>
+<li data-slide-to="1" data-target="#main-slider"></li>
+<li data-slide-to="2" data-target="#main-slider"></li>
+<li data-slide-to="3" data-target="#main-slider"></li>
+</ol>
+<div class="carousel-inner">
+<div class="item active full-height full-width item-slider"></div>
+<div class="item full-height full-width item-slider"></div>
+<div class="item full-height full-width item-slider"></div>
+<div class="item full-height full-width item-slider"></div>
+
+</div>
+</div>
+<a class="prev hidden-xs" data-slide="prev" href="#main-slider">
+<i class="icon-angle-left"></i>
+</a> <a class="next hidden-xs" data-slide="next" href="#main-slider">
+<i class="icon-angle-right"></i>
+</a>
+</section>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 news-box no-padding item-slider-max">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="news-body">
+<div class="row">
+<div class="row socials">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<p class="pull-right">
+<b>More news</b>
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank"><i class="icon-facebook icon-md"></i></a> <a class="social" href="//twitter.com/equasis_news" target="_blank"><i class="icon-twitter icon-md"></i></a>
+</p>
+</div>
+</div>
+<section class="no-margin" id="news-slider">
+<div class="carousel slide wet-asphalt carousel-news">
+<ol class="carousel-indicators">
+<li class="active" data-slide-to="0" data-target="#news-slider">1</li>
+<li data-slide-to="1" data-target="#news-slider">2</li>
+</ol>
+<div class="carousel-inner">
+<div class="item active">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+<h3 class="orange-equasis">News</h3>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+<h3 class="pull-right orange-equasis">2026-09-16</h3>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<p>A system maintenance will be performed on EQUASIS on the 18 of September between 10:00 and 12:00 (UTC). <br/>Equasis service will not be available during this interval. <br/>The EQUASIS support team apologizes for any inconvenience this may cause.</p>
+</div>
+</div>
+<div class="item">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+<h3 class="orange-equasis">News</h3>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+<h3 class="pull-right orange-equasis">2026-07-20</h3>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+<p><p>Equasis held its 46th Editorial Board meeting remotely, where discussions covered the review of the Data Providers Accreditation Procedure, the potential expansion of the scope of data provision by data providers, and the progress made in developing training material for users.
+<br/>At the end of the meeting, elections were held for the positions of Chair and the Vice-Chair positions of the Editorial Board for the next two-years term.
+</p>
+<p>More details <a href="https://www.equasis.org/EquasisWeb/public/About?fs=HomePage&amp;P_ABOUT=Events.html" target="_blank">here</a>.</p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="separator orange-equasis" id="news-separator"></section>
+
+<section class="grey_white_boxes gris-clair-login" id="access">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div class="col-lg-4 col-lg-push-4 col-md-4 col-md-push-4 col-sm-12 col-xs-12 padding-15">
+<div class="access-item">
+<div class="pull-left">
+<i class="icon-lock icon-md"></i>
+</div>
+<div class="access-body">
+<h3>Access</h3>
+<div class="clearfix"></div>
+<form action="../authen/HomePage?fs=HomePage" method="post" name="formLogin" role="form">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="form-group">
+<input autocomplete="off" class="form-control" id="home-login" name="j_email" placeholder="E-mail" type="text"/> <label for="home-login">E-mail</label>
+</div>
+<div class="clearfix h20"></div>
+<div class="form-group input-group equasis-input-group">
+<input autocomplete="off" class="form-control" id="home-password" name="j_password" placeholder="Password" type="password" value=""/> <label for="home-password">Password</label>
+<span class="input-group-addon eye-cliquable" id="spanTogglePassword">
+<i class="glyphicon glyphicon-eye-open" id="togglePassword"></i>
+</span>
+<span></span>
+</div>
+<div class="clearfix h20"></div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<a href="../public/LostPassword?fs=HomePage">Lost password <i class="icon-arrow-right icon-sm"></i></a>
+<div class="hidden-lg hidden-md">
+<a href="../public/ConditionsRegistration?fs=HomePage">Registration
+<i class="icon-arrow-right icon-sm"></i></a>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="hidden-md hidden-lg">
+<input class="pull-right btn btn-sm gris-bleu-copyright" href="#warning" name="submit" tabindex="3" type="submit" value="Login"/>
+</div>
+<div class="hidden-xs hidden-sm">
+<input class="pull-right btn btn-lg gris-bleu-copyright" href="#warning" name="submit" tabindex="3" type="submit" value="Login"/>
+</div>
+</div>
+</div>
+</form>
+<div class="clearfix h15 hidden-lg hidden-md"></div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="col-lg-4 col-lg-pull-4 col-md-4 col-md-pull-4 col-sm-12 col-xs-12 white disabled">
+<div class="access-item access-box">
+<div class="pull-left">
+<i class="icon-lock icon-md"></i>
+</div>
+<div class="access-body">
+<h3>Search</h3>
+<div class="clearfix"></div>
+<form role="form">
+<div class="input-group">
+<input autocomplete="off" class="form-control" placeholder="IMO, Name, Company" type="text"/> <span class="input-group-btn">
+<button class="btn btn-default" type="button">
+<i class="icon-search icon-sm"></i>
+</button>
+</span>
+</div>
+<div class="container-fluid hidden-sm hidden-xs">
+<div class="row">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+<div class="checkbox">
+<input checked="" id="checkbox-ship" name="checkbox-ship" type="checkbox" value="Ship"/> <label for="checkbox-ship"></label>
+<p>Ship</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+<div class="checkbox">
+<input checked="" id="checkbox-company" name="checkbox-company" type="checkbox" value="Company"/> <label for="checkbox-company"></label>
+<p>Company</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<a href="#">Advanced Search <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+<div>
+<a href="../restricted/ShipSubcription?fs=HomePage">Go to My Equasis <i class="icon-arrow-right icon-sm"></i></a>
+</div>
+<div class="clearfix h25 hidden-lg hidden-md"></div>
+</form>
+<div class="comment">
+<p>Please Login first</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<div class="access-item">
+<div class="access-body">
+<div class="clearfix h45"></div>
+<h3>First time visiting ?</h3>
+<p>You need to register in order to use ship and company search.</p>
+<form action="../public/ConditionsRegistration?fs=HomePage" method="post">
+<input class="pull-right btn btn-lg gris-bleu-copyright" name="Register" type="submit" value="Register"/>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="grey_blue_boxes gris-bleu-traffic">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+<div class="col-lg-8 col-lg-push-4 col-md-8 col-md-push-4 col-sm-12 col-xs-12 padding-15">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<h3>LAST DATA UPDATE :</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="access-item">
+<div class="access-body">
+<div class="list-group">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="list-group-item">
+<span class="badge">4 hour(s) ago </span>
+<p>Indian Ocean MoU</p>
+</div>
+<div class="list-group-item">
+<span class="badge">4 hour(s) ago </span>
+<p>Türk Loydu</p>
+</div>
+<div class="list-group-item">
+<span class="badge">4 hour(s) ago </span>
+<p>Mediterranean MoU</p>
+</div>
+<div class="list-group-item">
+<span class="badge">4 hour(s) ago </span>
+<p>Paris MoU</p>
+</div>
+<div class="list-group-item">
+<span class="badge">4 hour(s) ago </span>
+<p>Nippon Kaiji Kyokai</p>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="list-group-item">
+<span class="badge">5 hour(s) ago </span>
+<p>Polish Register of Shipping</p>
+</div>
+<div class="list-group-item">
+<span class="badge">5 hour(s) ago </span>
+<p>US Coast Guard - QualShip 21</p>
+</div>
+<div class="list-group-item">
+<span class="badge">5 hour(s) ago </span>
+<p>US Coast Guard - E_ZERO</p>
+</div>
+<div class="list-group-item">
+<span class="badge">5 hour(s) ago </span>
+<p>US Coast Guard</p>
+</div>
+<div class="list-group-item">
+<span class="badge">6 hour(s) ago </span>
+<p>American Bureau of Shipping</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-12 col-xs-12 white h2 hidden-lg hidden-md no-padding">
+</div>
+<div class="col-lg-4 col-lg-pull-8 col-md-4 col-md-pull-8 col-sm-12 col-xs-12 padding-15">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<h3>USER ACTIVITY :</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<p>Connections : 99,823,667 since 2007 </p>
+<p>Users connected : 21558</p>
+<a href="https://mapmyvisitors.com/web/1c5nk" target="_blank">
+
+</a>
+<button class="center-block btn btn-sm gris-bleu-copyright col-centered hidden-lg hidden-md" onclick="window.open('https://mapmyvisitors.com/web/1c5nk');" type="button">
+Cluster Maps
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix h25"></div>
+</section>
+
+<div class="footer">
+<section class="separator orange-equasis" id="news-separator"></section>
+<section class="white" id="contributors">
+<div class="container-fluid col-centered">
+<div class="row-fluid">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="access-item">
+<div class="access-body">
+<h3>Equasis's contributors</h3>
+<div class="col-md-offset-1">
+<div class="row">
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.tc.gc.ca/eng/marinesafety/oep-inspection-menu-770.htm" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.emsa.europa.eu/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mer.gouv.fr/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.mofa.go.jp/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.korea.net/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.norway.no/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.fomento.gob.es/MFOM/LANG_CASTELLANO/DIRECCIONES_GENERALES/MARINA_MERCANTE/" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.gov.uk/government/organisations/maritime-and-coastguard-agency" target="_blank"></a>
+</div>
+<div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+<a class="social" href="https://www.dco.uscg.mil/Our-Organization/Assistant-Commandant-for-Prevention-Policy-CG-5P/" target="_blank"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="gris-bleu-traffic" id="sitemap">
+<div class="container-fluid no-padding">
+<div class="row-fluid">
+
+<div class="hidden-lg hidden-md col-sm-12 col-xs-12 social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="col-sm-6 col-xs-6 hidden-lg hidden-md">
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=HomePage&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+Contact us
+</a>
+</p>
+</div>
+<div class="row">
+<p>
+<a class="social" href="Moa?fs=HomePage&amp;P_MOA=help">
+<i class="icon-info icon-md"></i>
+Help
+</a>
+</p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+</p>
+</div>
+<div class="row hidden-lg hidden-md">
+<p class="pull-right">
+<a class="social" href="Moa?fs=HomePage&amp;P_MOA=faq">
+<i class="icon-question icon-md"></i>
+FAQ
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<h3>Site map</h3>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../public/HomePage?fs=HomePage">
+Home
+</a>
+</li>
+<li>
+<a href="../public/About?fs=HomePage">
+About Equasis
+</a>
+</li>
+<li>
+<form action="../restricted/Search?fs=HomePage" method="post" name="lienSearchFooter">
+<input name="lienFooter" type="hidden" value="true"/>
+</form>
+<a href="#" onclick="document.lienSearchFooter.submit();">
+Search
+</a>
+</li>
+<li>
+<a href="../public/About?fs=HomePage&amp;P_ABOUT=Providers.html">
+Data providers
+</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<ul>
+<li>
+<a href="../restricted/Stat?fs=HomePage">
+Annual Reports</a>
+</li>
+<li>
+<a href="../public/News?fs=HomePage&amp;P_NEWS=News.html">
+News
+</a>
+</li>
+<li>
+<a href="../restricted/ShipSubcription?fs=HomePage">
+My Equasis
+</a>
+</li>
+<li>
+<a href="../public/About?fs=HomePage&amp;P_ABOUT=EquasisPolicy.html">
+Equasis policy
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-6 hidden-sm hidden-xs social-group">
+<div class="sitemap-item">
+<div class="sitemap-body">
+<div class="clearfix h30 hidden-sm hidden-xs"></div>
+<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+<div class="row">
+<p class="pull-right">
+Join us on
+<a class="social" href="//www.facebook.com/equasis.news" target="_blank">
+<i class="icon-facebook icon-md"></i>
+</a>
+<a class="social" href="//twitter.com/equasis_news" target="_blank">
+<i class="icon-twitter icon-md"></i>
+</a>
+<span class="no-style hidden-sm hidden-xs">
+or contact us
+<a class="social" href="Moa?fs=HomePage&amp;P_MOA=contact">
+<i class="icon-envelope icon-md"></i>
+</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer class="gris-bleu-copyright" id="footer">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<p>© Copyright 2000-2026; Version : Prod v3.7.1 a; Developed and hosted by French Ministry in charge of the Sea and Fisheries -DGAMPA/SDNUM-Saint-Malo</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+<ul class="pull-right">
+<li>
+<a href="../public/Support?fs=HomePage&amp;P_SUPPORT=Help.html">
+Help
+</a>
+</li>
+<li>
+<a href="../public/Support?fs=HomePage&amp;P_SUPPORT=Faq.html">
+FAQ
+</a>
+</li>
+<li><a class="gototop" href="#" id="gototop"><i class="icon-chevron-up"></i></a></li>
+
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+
+<div aria-labelledby="mymodallabel" class="modal fade" id="modal-help" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header bleu-equasis">
+<button class="close" data-dismiss="modal" type="button">
+<i class="icon-remove-sign"></i>
+</button>
+<h1>
+<i class="icon-info-sign"></i> <span id="modal-title-help"> </span>
+</h1>
+</div>
+<div class="modal-body" id="modal-body-help"></div>
+<div class="modal-footer">
+<button class="btn btn-md gris-bleu-copyright pull-left" data-dismiss="modal" type="button">Close</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
+
