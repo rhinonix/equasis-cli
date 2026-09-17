@@ -6,6 +6,17 @@ All notable changes to equasis-cli are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- After `clear` in the interactive shell, the first lines of new output were shown in
+  banner colors.
+
+### Changed
+
+- The README screenshot shows the 3.0 interactive shell.
+- Contributions are accepted under a Contributor License Agreement (CLA.md), agreed to
+  with a checkbox in the pull request template.
+
 ## [3.0.0] - 2026-09-17
 
 A rebuild focused on reliability, correct data, and scripting. Existing users should read
