@@ -13,7 +13,7 @@ Investigating many vessels or companies through the Equasis website is slow and 
 equasis-cli turns it into scriptable commands that produce tables, JSON, JSON Lines, or
 CSV, handle batches of hundreds of vessels, and summarize the signals researchers look for.
 
-![Screenshot of the equasis-cli interactive shell](https://github.com/user-attachments/assets/d8efd954-438b-4e91-b000-8391b2f0321f)
+![The equasis-cli interactive shell showing the profile of EVER GIVEN](https://raw.githubusercontent.com/rhinonix/equasis-cli/main/docs/images/interactive-shell.png)
 
 ## Features
 
