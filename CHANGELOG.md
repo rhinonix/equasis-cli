@@ -6,7 +6,7 @@ All notable changes to equasis-cli are documented here. The format follows
 
 ## [Unreleased]
 
-## [3.0.0] - 2026-09-16
+## [3.0.0] - 2026-09-17
 
 A rebuild focused on reliability, correct data, and scripting. Existing users should read
 **Upgrading from 2.x** below.
