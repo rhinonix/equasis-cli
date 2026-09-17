@@ -190,6 +190,7 @@ class InteractiveShell:
         lines = combined.split("\n")
         if len(lines) > MAX_OUTPUT_LINES:
             combined = "\n".join(lines[-MAX_OUTPUT_LINES:])
+            self._forget_banner()
         scrolling = self.app.layout.has_focus(self.output_buffer)
         position = (
             min(self.output_buffer.cursor_position, len(combined)) if scrolling else len(combined)
@@ -199,6 +200,12 @@ class InteractiveShell:
 
     def clear(self) -> None:
         self.output_buffer.set_document(Document("", 0), bypass_readonly=True)
+        self._forget_banner()
+
+    def _forget_banner(self) -> None:
+        """Stop styling the first lines as the banner once it is no longer there."""
+        self.lexer.banner_lines = 0
+        self.lexer.art_lines = 0
 
     def _invalidate(self) -> None:
         if self.app.is_running:

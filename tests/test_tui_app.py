@@ -116,6 +116,18 @@ def test_output_is_capped(shell: InteractiveShell) -> None:
     assert len(shell.output_buffer.text.split("\n")) <= MAX_OUTPUT_LINES
 
 
+def test_banner_styling_ends_when_the_banner_is_cleared(shell: InteractiveShell) -> None:
+    styles = shell.lexer.lex_document(shell.output_buffer.document)
+    assert styles(0)[0][0] == "class:banner-art"
+
+    shell.clear()
+    shell.write(f"{PROMPT}vessel /imo 9811000\nEVER GIVEN (IMO 9811000)")
+
+    styles = shell.lexer.lex_document(shell.output_buffer.document)
+    assert styles(0)[0][0] == "class:echo"
+    assert styles(1)[0][0] == ""
+
+
 def test_lexer_highlights_messages() -> None:
     lexer = OutputLexer(banner_lines=0, art_lines=0)
     document = Document(
