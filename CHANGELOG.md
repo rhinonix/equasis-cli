@@ -6,6 +6,8 @@ All notable changes to equasis-cli are documented here. The format follows
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-09-17
+
 ### Fixed
 
 - After `clear` in the interactive shell, the first lines of new output were shown in
@@ -116,7 +118,8 @@ A rebuild focused on reliability, correct data, and scripting. Existing users sh
 - First stable release: vessel lookup across the Ship Info, Inspections, and Ship History
   pages, vessel search, fleets, batch processing, retries, and credential management.
 
-[Unreleased]: https://github.com/rhinonix/equasis-cli/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/rhinonix/equasis-cli/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/rhinonix/equasis-cli/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/rhinonix/equasis-cli/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/rhinonix/equasis-cli/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/rhinonix/equasis-cli/releases/tag/v1.0.0
