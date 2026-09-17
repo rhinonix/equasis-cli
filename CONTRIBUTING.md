@@ -52,9 +52,12 @@ fixtures.
 
 equasis-cli is licensed under the PolyForm Noncommercial License 1.0.0, and commercial
 licenses are available separately (see [LICENSING.md](LICENSING.md)). So that the project
-can continue to offer both, you will be asked to agree to a contributor license agreement
-(CLA) before your first pull request is merged. You keep the copyright to your
-contribution; the agreement allows it to be distributed under both licenses.
+can continue to offer both, contributions are accepted under the
+[Contributor License Agreement](CLA.md). You keep the copyright to your contribution; the
+agreement allows it to be distributed under both licenses.
+
+To agree, tick the "I agree to the Contributor License Agreement" box in the pull request
+description. Pull requests can only be merged once the box is ticked.
 
 ## Code of conduct
 
