@@ -27,6 +27,23 @@ This additional permission does not allow you to sell, sublicense, or offer
 equasis-cli, modified versions of it, or its output as a commercial product or
 service.
 
+## Additional permission: AB//LABS and MARA
+
+The licensor grants AB//LABS (a DBA of Austmarr Byrdingr OU) permission to use,
+modify, and incorporate equasis-cli source code into MARA and other AB//LABS
+products and services, including commercial ones, without a separate commercial
+license. The licensor is the copyright holder of equasis-cli and a principal of
+AB//LABS; this permission records that relationship explicitly rather than
+leaving it implied.
+
+This permission runs to AB//LABS only. It does not allow AB//LABS to sell,
+sublicense, or offer equasis-cli itself, or modified versions of it, as a
+standalone commercial product or service — only to use its code inside AB//LABS
+products. It grants nothing to anyone else, and does not change the terms above
+for any other user.
+
+Granted 2026-10-16.
+
 ## Commercial use
 
 Any other commercial use requires a separate commercial license. Examples
